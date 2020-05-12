@@ -1,0 +1,12 @@
+application:
+  name: familie-ba-infotrygd-feed
+
+server:
+  servlet:
+    context-path: /
+  port: 8092
+
+spring:
+  autoconfigure.exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+  main.banner-mode: "off"
+
