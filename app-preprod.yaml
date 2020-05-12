@@ -1,0 +1,43 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: familie-ba-infotrygd-feed
+  namespace: default
+  labels:
+    team: teamfamilie
+
+spec:
+  image: {{ image }}
+  port: 8092
+  liveness:
+    path: /internal/health
+    initialDelay: 20
+    failureThreshold: 10
+  readiness:
+    path: /internal/health
+    initialDelay: 20
+    failureThreshold: 10
+  prometheus:
+    enabled: true
+    path: /internal/prometheus
+  #vault:
+  #  enabled: true
+  replicas:
+    min: 2
+    max: 2
+    cpuThresholdPercentage: 50
+  resources:
+    limits:
+      memory: 1024Mi
+      cpu: "1"
+    requests:
+      memory: 512Mi
+      cpu: 200m
+  ingresses:
+    - https://familie-ba-infotrygd-feed.nais.preprod.local
+    - https://familie-ba-infotrygd-feed.dev-fss.nais.io
+  secureLogs:
+    enabled: true
+  env:
+    - name: SPRING_PROFILES_ACTIVE
+      value: preprod
