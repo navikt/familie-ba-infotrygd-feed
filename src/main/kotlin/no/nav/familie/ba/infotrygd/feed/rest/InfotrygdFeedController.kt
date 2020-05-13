@@ -3,6 +3,7 @@ package no.nav.familie.ba.infotrygd.feed.rest
 import io.micrometer.core.annotation.Timed
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
+import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.server.ResponseStatusException
 
 @RestController
+@ProtectedWithClaims(issuer = "sts")
 class InfotrygdFeedController() {
 
     @Operation(
@@ -27,7 +29,7 @@ class InfotrygdFeedController() {
             @RequestParam("maxAntall", required = false, defaultValue = "100") maksAntall: Int,
 
             @Parameter(description = "Støttede hendelser vedtak eller fødselsmeldinger.")
-            @RequestParam("type", required = true) type: String?,
+            @RequestParam("type") type: String,
 
             @Parameter(description = "Ikke implementert. Ta kontakt med Team Familie dersom dette er ønsket.")
             @RequestParam("aktoerId", required = false) aktørId: String?
