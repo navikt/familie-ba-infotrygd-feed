@@ -7,9 +7,11 @@ import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
+import springfox.documentation.swagger2.annotations.EnableSwagger2
 
 @SpringBootConfiguration
-@EnableJwtTokenValidation
+@EnableJwtTokenValidation(ignore = ["org.springframework","springfox.documentation.swagger.web.ApiResourceController"])
+@EnableSwagger2
 @ComponentScan(ApplicationConfig.pakkenavn)
 class ApplicationConfig {
 
