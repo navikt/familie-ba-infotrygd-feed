@@ -1,6 +1,7 @@
 package no.nav.familie.ba.infotrygd.feed.config
 
 import no.nav.familie.log.filter.LogFilter
+import no.nav.security.token.support.spring.api.EnableJwtTokenValidation
 import org.slf4j.LoggerFactory
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.web.servlet.FilterRegistrationBean
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 
 @SpringBootConfiguration
+@EnableJwtTokenValidation
 @ComponentScan(ApplicationConfig.pakkenavn)
 class ApplicationConfig {
 

@@ -1,4 +1,4 @@
 no.nav.security.jwt:
   issuer.sts:
-    discoveryurl:  https://security-token-service.nais.preprod.local/rest/v1/sts/.well-known/openid-configuration
-    accepted_audience: ${FAMILIE_BA_INFOTRYGD_FEED_CLIENT_ID}
+    discoveryurl: http://metadata
+    accepted_audience: aud-localhost

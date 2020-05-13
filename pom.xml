@@ -75,7 +75,7 @@
         </dependency>
         <dependency>
             <groupId>no.nav.security</groupId>
-            <artifactId>token-client-spring</artifactId>
+            <artifactId>token-validation-spring</artifactId>
             <version>${token-validation-spring.version}</version>
         </dependency>
         <dependency>
