@@ -6,5 +6,4 @@ import org.springframework.context.annotation.Import
 
 @Configuration
 @Import(TokenGeneratorConfiguration::class)
-class SecurityTestConfig {
-}
+class SecurityTestConfig
