@@ -29,7 +29,7 @@
         <appender-ref ref="stdout_json"/>
     </root>
 
-    <logger name="no.nav" level="WARN"/>
+    <logger name="no.nav" level="DEBUG"/>
     <logger name="no.nav.familie" level="INFO"/>
 
 </configuration>
