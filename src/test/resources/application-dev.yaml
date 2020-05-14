@@ -1,0 +1,15 @@
+no.nav.security.jwt:
+  issuer.sts:
+    discoveryurl: http://metadata
+    accepted_audience: aud-localhost
+
+spring:
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql=false
+    hibernate:
+      ddl-auto: create
+  flyway:
+    enabled: false

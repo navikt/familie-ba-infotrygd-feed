@@ -4,12 +4,16 @@ import no.nav.familie.log.filter.LogFilter
 import no.nav.security.token.support.spring.api.EnableJwtTokenValidation
 import org.slf4j.LoggerFactory
 import org.springframework.boot.SpringBootConfiguration
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 
 @SpringBootConfiguration
+@ConfigurationPropertiesScan
+@EnableJpaRepositories(ApplicationConfig.pakkenavn)
 @EnableJwtTokenValidation(ignore = ["org.springframework","springfox.documentation.swagger.web.ApiResourceController"])
 @EnableSwagger2
 @ComponentScan(ApplicationConfig.pakkenavn)
