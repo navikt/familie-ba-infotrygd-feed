@@ -52,6 +52,7 @@
               "fnrStoenadsmottaker": {
                 "$id": "/properties/elementer/items/properties/innhold/properties/fnrStoenadsmottaker",
                 "type": "string",
+                "format": "\\d{11}",
                 "title": "Fnr for den som mottar stønaden"
               },
               "datoStartNyBA": {
@@ -66,16 +67,19 @@
               "fnrBarn": {
                 "$id": "/properties/elementer/items/properties/innhold/properties/fnrBarn",
                 "type": "string",
+                "format": "\\d{11}",
                 "title": "Fnr for mottakende barn"
               },
               "fnrMor": {
                 "$id": "/properties/elementer/items/properties/innhold/properties/fnrMor",
                 "type": "string",
+                "format": "\\d{11}",
                 "title": "Fnr for barnets mor"
               },
               "fnrFar": {
                 "$id": "/properties/elementer/items/properties/innhold/properties/fnrFar",
                 "type": "string",
+                "format": "\\d{11}",
                 "title": "Fnr for barnets far"
               }
             },
