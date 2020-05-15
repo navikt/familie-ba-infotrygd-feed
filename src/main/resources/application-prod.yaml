@@ -1,0 +1,5 @@
+no.nav.security.jwt:
+  issuer.sts:
+    discoveryurl: https://security-token-service.nais.adeo.no/rest/v1/sts/.well-known/openid-configuration
+    accepted_audience: ${INFOTRYGD_CLIENT_ID}
+

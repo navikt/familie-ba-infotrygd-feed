@@ -1,0 +1,4 @@
+no.nav.security.jwt:
+  issuer.sts:
+    discoveryurl: http://metadata
+    accepted_audience: aud-localhost
