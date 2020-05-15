@@ -28,7 +28,7 @@ class SchemaValidatorTest {
                 inneholderFlereElementer = false,
                 elementer = listOf(
                         FeedElement(
-                                innhold = Innhold(fnrBarn = "12345678910"),
+                                innhold = InnholdOpphort(fnrBarn = "12345678910"),
                                 metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                                 sekvensId = 42,
                                 type = Type.BA_Foedsel_v1
@@ -43,7 +43,7 @@ class SchemaValidatorTest {
                 inneholderFlereElementer = false,
                 elementer = listOf(
                         FeedElement(
-                                innhold = Innhold(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = "12345678910"),
+                                innhold = InnholdFoedsel(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = "12345678910"),
                                 metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                                 sekvensId = 42,
                                 type = Type.BA_Opphoert_v1
