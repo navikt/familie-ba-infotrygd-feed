@@ -32,8 +32,7 @@ class InfotrygdFeedController {
             @RequestParam("aktoerId", required = false) aktørId: String?
     ) : ResponseEntity<FeedMeldingDto> {
         if(aktørId != null) {
-            return ResponseEntity.badRequest()
-                    .body("Det er ikke implementert støtte for parameter 'aktoerId' på gjeldende tidspunkt")
+            return ResponseEntity.badRequest().build()
         }
 
         // TODO: Fyll ut DTO-en

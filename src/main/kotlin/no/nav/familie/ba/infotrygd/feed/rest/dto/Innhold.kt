@@ -3,9 +3,9 @@ package no.nav.familie.ba.infotrygd.feed.rest.dto
 import java.time.LocalDate
 
 data class Innhold(
-        val datoStartNyBA: LocalDate,
-        val fnrBarn: String,
-        val fnrFar: String,
-        val fnrMor: String,
-        val fnrStoenadsmottaker: String
+        val datoStartNyBA: LocalDate? = null,
+        val fnrBarn: String? = null,
+        val fnrFar: String? = null,
+        val fnrMor: String? = null,
+        val fnrStoenadsmottaker: String? = null
 )
