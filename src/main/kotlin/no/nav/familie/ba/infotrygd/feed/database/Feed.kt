@@ -1,4 +1,4 @@
-package no.nav.familie.ba.infotrygd.feed.rest.database
+package no.nav.familie.ba.infotrygd.feed.database
 
 import java.time.LocalDate
 import javax.persistence.*
@@ -7,18 +7,19 @@ import javax.persistence.*
 @Table(name = "FEED")
 data class Feed(
         @Id
+        @Column(name = "sekvens_id")
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "feed_seq_generator")
-        @SequenceGenerator(name = "vedtak_seq_generator", sequenceName = "vedtak_seq", allocationSize = 50)
+        @SequenceGenerator(name = "feed_seq_generator", sequenceName = "feed_seq", allocationSize = 50)
         val sekvensId: Long = 0,
 
-       @Column(name = "type", nullable = false)
+        @Column(name = "type", nullable = false)
         val type: String,
 
         @Column(name = "fnr_stonadsmottaker", nullable = true)
         var fnrStonadsmottaker: String? = null,
 
         @Column(name = "dato_start_ny_ba", nullable = true)
-        var datoStartNyBa: LocalDate,
+        var datoStartNyBa: LocalDate? = null,
 
         @Column(name = "fnr_barn", nullable = true)
         var fnrBarn: String? = null,
@@ -29,15 +30,14 @@ data class Feed(
         @Column(name = "fnr_far", nullable = true)
         var fnrFar: String? = null
 
-        // TODO: Skal denne spares i databasen eller genereres når den hentes?
+        // TODO: Skal denne spares i databasen eller genereres når den hentes? Hva skal vi gjøre når meldinger resendes?
         //@Column(name = "opprettet_dato", nullable = true)
         //var opprettetDato: String? = null,
 
         ) {
 
         override fun toString(): String {
-                return "Vedtak(sekvensId=$sekvensId, type=$type, fnrStonadsmottaker='$fnrStonadsmottaker', " +
-                        "datoStartNyBa=$datoStartNyBa, fnrBarn=$fnrBarn, fnrMor=$fnrMor, fnrFar=$fnrFar)"
+                return "Feed(sekvensId=$sekvensId, type=$type, datoStartNyBa=$datoStartNyBa)"
         }
 }
 
