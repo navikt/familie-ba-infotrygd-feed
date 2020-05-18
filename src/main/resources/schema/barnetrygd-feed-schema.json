@@ -45,53 +45,6 @@
               1
             ]
           },
-          "innhold": {
-            "$id": "/properties/elementer/items/properties/innhold",
-            "type": "object",
-            "properties": {
-              "fnrStoenadsmottaker": {
-                "$id": "/properties/elementer/items/properties/innhold/properties/fnrStoenadsmottaker",
-                "type": "string",
-                "format": "\\d{11}",
-                "title": "Fnr for den som mottar stønaden"
-              },
-              "datoStartNyBA": {
-                "$id": "/properties/elementer/items/properties/innhold/properties/datoStartNyBA",
-                "type": "string",
-                "format": "date",
-                "title": "Første dato stønad utbetales fra ny løsning",
-                "examples": [
-                  "2018-04-18"
-                ]
-              },
-              "fnrBarn": {
-                "$id": "/properties/elementer/items/properties/innhold/properties/fnrBarn",
-                "type": "string",
-                "format": "\\d{11}",
-                "title": "Fnr for mottakende barn"
-              },
-              "fnrMor": {
-                "$id": "/properties/elementer/items/properties/innhold/properties/fnrMor",
-                "type": "string",
-                "format": "\\d{11}",
-                "title": "Fnr for barnets mor"
-              },
-              "fnrFar": {
-                "$id": "/properties/elementer/items/properties/innhold/properties/fnrFar",
-                "type": "string",
-                "format": "\\d{11}",
-                "title": "Fnr for barnets far"
-              }
-            },
-            "if": {
-              "properties": {
-                "type": { "const": "BA_Opphoert_v1" }
-              },
-              "required": ["type"]
-            },
-            "then": { "required": ["fnrStoenadsmottaker","datoStartNyBA"] },
-            "else": { "required": ["fnrBarn"] }
-          },
           "metadata": {
             "$id": "/properties/elementer/items/properties/metadata",
             "type": "object",
@@ -109,6 +62,90 @@
             "required": [
               "opprettetDato"
             ]
+          }
+        },
+        "if": {
+          "properties": {
+            "type": {
+              "enum": [
+                "BA_Opphoert_v1"
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        "then": {
+          "properties": {
+            "innhold": {
+              "$id": "/properties/elementer/items/properties/innhold",
+              "type": "object",
+              "properties": {
+                "fnrStoenadsmottaker": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrStoenadsmottaker",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for den som mottar stønaden"
+                },
+                "datoStartNyBA": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/datoStartNyBA",
+                  "type": "string",
+                  "format": "date",
+                  "title": "Første dato stønad utbetales fra ny løsning",
+                  "examples": [
+                    "2018-04-18"
+                  ]
+                },
+                "fnrMor": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrMor",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for barnets mor"
+                },
+                "fnrFar": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrFar",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for barnets far"
+                }
+              },
+              "required": [
+                "fnrStoenadsmottaker",
+                "datoStartNyBA"
+              ]
+            }
+          }
+        },
+        "else": {
+          "properties": {
+            "innhold": {
+              "$id": "/properties/elementer/items/properties/innhold",
+              "type": "object",
+              "properties": {
+                "fnrBarn": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrBarn",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for mottakende barn"
+                },
+                "fnrMor": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrMor",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for barnets mor"
+                },
+                "fnrFar": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrFar",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for barnets far"
+                }
+              },
+              "required": [
+                "fnrBarn"
+              ]
+            }
           }
         },
         "required": [
