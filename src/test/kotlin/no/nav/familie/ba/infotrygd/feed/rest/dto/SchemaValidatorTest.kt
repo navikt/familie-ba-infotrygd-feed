@@ -34,6 +34,13 @@ class SchemaValidatorTest {
         Assertions.assertEquals(1, feilListe.size)
     }
 
+    @Test
+    fun `Dto for vedtak validerer ikke dersom fnrStoenadsmottaker har feil format`() {
+        val node = objectMapper.valueToTree<JsonNode>(testDtoForVedtak("123456"))
+        val feilListe = schema.validate(node)
+        Assertions.assertEquals(1, feilListe.size)
+    }
+
     private fun testDtoForFødsel(fnr: String = "12345678910"): FeedMeldingDto {
 
         return FeedMeldingDto(
@@ -49,14 +56,14 @@ class SchemaValidatorTest {
         )
     }
 
-    private fun testDtoForVedtak(): FeedMeldingDto {
+    private fun testDtoForVedtak(fnrStoenadsmottaker: String =  "12345678910"): FeedMeldingDto {
 
         return FeedMeldingDto(
                 tittel = "Feed schema validator test",
                 inneholderFlereElementer = false,
                 elementer = listOf(
                         FeedElement(
-                                innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = "12345678910"),
+                                innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
                                 metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                                 sekvensId = 42,
                                 type = Type.BA_Opphoert_v1
