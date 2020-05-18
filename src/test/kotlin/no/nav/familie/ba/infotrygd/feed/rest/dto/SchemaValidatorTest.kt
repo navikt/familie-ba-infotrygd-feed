@@ -41,14 +41,25 @@ class SchemaValidatorTest {
         Assertions.assertEquals(1, feilListe.size)
     }
 
-    private fun testDtoForFødsel(fnr: String = "12345678910"): FeedMeldingDto {
+    @Test
+    fun `Dto for fødsel med fnrMor og fnrFar validerer mot schema`() {
+        val node = objectMapper.valueToTree<JsonNode>(testDtoForFødsel(fnrMor = "12345678910", fnrFar = "12345678910"))
+        val feilListe = schema.validate(node)
+        Assertions.assertTrue(feilListe.isEmpty())
+    }
+
+    private fun testDtoForFødsel(fnr: String = "12345678910", fnrMor: String? = null, fnrFar: String? = null): FeedMeldingDto {
 
         return FeedMeldingDto(
                 tittel = "Feed schema validator test",
                 inneholderFlereElementer = false,
                 elementer = listOf(
                         FeedElement(
-                                innhold = InnholdFødsel(fnrBarn = fnr),
+                                innhold = if( fnrMor != null && fnrFar != null) {
+                                    InnholdFødsel(fnrBarn = fnr, fnrFar = fnrFar, fnrmor = fnrMor)
+                                } else {
+                                    InnholdFødsel(fnrBarn = fnr)
+                                },
                                 metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                                 sekvensId = 42,
                                 type = Type.BA_Foedsel_v1
