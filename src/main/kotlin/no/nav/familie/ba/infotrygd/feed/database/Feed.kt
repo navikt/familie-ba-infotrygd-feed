@@ -1,5 +1,6 @@
 package no.nav.familie.ba.infotrygd.feed.database
 
+import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import java.time.LocalDate
 import javax.persistence.*
 
@@ -12,8 +13,9 @@ data class Feed(
         @SequenceGenerator(name = "feed_seq_generator", sequenceName = "feed_seq", allocationSize = 50)
         val sekvensId: Long = 0,
 
+        @Enumerated(EnumType.STRING)
         @Column(name = "type", nullable = false)
-        val type: String,
+        val type: Type,
 
         @Column(name = "fnr_stonadsmottaker", nullable = true)
         var fnrStonadsmottaker: String? = null,
