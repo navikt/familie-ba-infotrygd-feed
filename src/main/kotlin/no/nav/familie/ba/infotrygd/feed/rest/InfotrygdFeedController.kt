@@ -2,6 +2,7 @@ package no.nav.familie.ba.infotrygd.feed.rest
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
+import no.nav.familie.ba.infotrygd.feed.rest.dto.FeedMeldingDto
 import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -29,12 +30,12 @@ class InfotrygdFeedController {
 
             @Parameter(description = "Ikke implementert. Ta kontakt med Team Familie dersom dette er ønsket.")
             @RequestParam("aktoerId", required = false) aktørId: String?
-    ) : ResponseEntity<String> {
+    ) : ResponseEntity<FeedMeldingDto> {
         if(aktørId != null) {
-            return ResponseEntity.badRequest()
-                    .body("Det er ikke implementert støtte for parameter 'aktoerId' på gjeldende tidspunkt")
+            return ResponseEntity.badRequest().build()
         }
 
-        return ResponseEntity.ok("ok")
+        // TODO: Fyll ut DTO-en
+        return ResponseEntity.ok(FeedMeldingDto(emptyList(), false, ""))
     }
 }

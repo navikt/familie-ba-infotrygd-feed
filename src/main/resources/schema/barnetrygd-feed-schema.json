@@ -1,0 +1,164 @@
+{
+  "$id": "http://no.nav.familie.ba.infotrygd.feed",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "tittel": {
+      "$id": "/properties/tittel",
+      "type": "string",
+      "title": "Tittel på JSON-feeden"
+    },
+    "inneholderFlereElementer": {
+      "$id": "/properties/inneholderFlereElementer",
+      "type": "boolean",
+      "title": "Har feeden flere elementer ",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "elementer": {
+      "$id": "/properties/elementer",
+      "type": "array",
+      "items": {
+        "$id": "/properties/elementer/items",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$id": "/properties/elementer/items/properties/type",
+            "type": "string",
+            "title": "Type forretningshendelse",
+            "examples": [
+              "BA_Foedsel_v1"
+            ],
+            "enum": [
+              "BA_Opphoert_v1",
+              "BA_Foedsel_v1"
+            ]
+          },
+          "sekvensId": {
+            "$id": "/properties/elementer/items/properties/sekvensId",
+            "type": "integer",
+            "title": "Sekvensnummer",
+            "description": "Unik løpenummer for feeden. Stigende rekkefølge. Det kan være hull i rekkefølgen",
+            "examples": [
+              1
+            ]
+          },
+          "metadata": {
+            "$id": "/properties/elementer/items/properties/metadata",
+            "type": "object",
+            "properties": {
+              "opprettetDato": {
+                "$id": "/properties/elementer/items/properties/metadata/properties/opprettetDato",
+                "type": "string",
+                "format": "date-time",
+                "title": "Tidspunkt hendelsen var opprettet i feeden",
+                "examples": [
+                  "2018-04-18T09:03:29.202"
+                ]
+              }
+            },
+            "required": [
+              "opprettetDato"
+            ]
+          }
+        },
+        "if": {
+          "properties": {
+            "type": {
+              "enum": [
+                "BA_Opphoert_v1"
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        "then": {
+          "properties": {
+            "innhold": {
+              "$id": "/properties/elementer/items/properties/innhold",
+              "type": "object",
+              "properties": {
+                "fnrStoenadsmottaker": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrStoenadsmottaker",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for den som mottar stønaden"
+                },
+                "datoStartNyBA": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/datoStartNyBA",
+                  "type": "string",
+                  "format": "date",
+                  "title": "Første dato stønad utbetales fra ny løsning",
+                  "examples": [
+                    "2018-04-18"
+                  ]
+                },
+                "fnrMor": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrMor",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for barnets mor"
+                },
+                "fnrFar": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrFar",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for barnets far"
+                }
+              },
+              "required": [
+                "fnrStoenadsmottaker",
+                "datoStartNyBA"
+              ]
+            }
+          }
+        },
+        "else": {
+          "properties": {
+            "innhold": {
+              "$id": "/properties/elementer/items/properties/innhold",
+              "type": "object",
+              "properties": {
+                "fnrBarn": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrBarn",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for mottakende barn"
+                },
+                "fnrMor": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrMor",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for barnets mor"
+                },
+                "fnrFar": {
+                  "$id": "/properties/elementer/items/properties/innhold/properties/fnrFar",
+                  "type": "string",
+                  "pattern": "^([0-9]{11})$",
+                  "title": "Fnr for barnets far"
+                }
+              },
+              "required": [
+                "fnrBarn"
+              ]
+            }
+          }
+        },
+        "required": [
+          "type",
+          "sekvensId",
+          "innhold",
+          "metadata"
+        ]
+      }
+    }
+  },
+  "required": [
+    "tittel",
+    "elementer"
+  ]
+}
