@@ -2,6 +2,7 @@ package no.nav.familie.ba.infotrygd.feed.rest
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
+import no.nav.familie.ba.infotrygd.feed.rest.dto.FeedMeldingDto
 import no.nav.security.token.support.core.api.ProtectedWithClaims
 import no.nav.familie.ba.infotrygd.feed.rest.dto.FeedMeldingDto
 import org.springframework.http.ResponseEntity
