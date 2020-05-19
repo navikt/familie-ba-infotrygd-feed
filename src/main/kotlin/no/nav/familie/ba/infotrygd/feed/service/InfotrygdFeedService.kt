@@ -24,4 +24,7 @@ class InfotrygdFeedService(val feedRepository: FeedRepository) {
                             fnrStonadsmottaker = fnrStonadsmottaker,
                             datoStartNyBa = datoStartNyBA
                     ))
+
+    fun hentMeldingerFraFeed(sistLestSekvensId: Long): List<Feed> =
+            feedRepository.finnMeldingerMedSekvensIdStørreEnn(sistLestSekvensId)
 }
