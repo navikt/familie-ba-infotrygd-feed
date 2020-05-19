@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import no.nav.familie.ba.infotrygd.feed.rest.dto.FeedMeldingDto
 import no.nav.security.token.support.core.api.ProtectedWithClaims
-import no.nav.familie.ba.infotrygd.feed.rest.dto.FeedMeldingDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam

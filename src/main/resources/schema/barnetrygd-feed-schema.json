@@ -32,7 +32,7 @@
               "BA_Foedsel_v1"
             ],
             "enum": [
-              "BA_Opphoert_v1",
+              "BA_Vedtak_v1",
               "BA_Foedsel_v1"
             ]
           },
@@ -68,7 +68,7 @@
           "properties": {
             "type": {
               "enum": [
-                "BA_Opphoert_v1"
+                "BA_Vedtak_v1"
               ]
             }
           },
