@@ -8,6 +8,6 @@ class DevLauncher
 
 fun main(args: Array<String>) {
     val springApp = SpringApplication(DevLauncher::class.java)
-    springApp.setAdditionalProfiles("postgres")
+    springApp.setAdditionalProfiles("dev")
     springApp.run(*args)
 }

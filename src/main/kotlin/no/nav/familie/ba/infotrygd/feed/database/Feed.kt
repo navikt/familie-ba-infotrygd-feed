@@ -31,11 +31,6 @@ data class Feed(
 
         @Column(name = "fnr_far", nullable = true)
         var fnrFar: String? = null
-
-        // TODO: Skal denne spares i databasen eller genereres når den hentes? Hva skal vi gjøre når meldinger resendes?
-        //@Column(name = "opprettet_dato", nullable = true)
-        //var opprettetDato: String? = null,
-
         ) {
 
         override fun toString(): String {

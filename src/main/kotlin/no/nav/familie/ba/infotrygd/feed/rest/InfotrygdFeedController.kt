@@ -23,11 +23,8 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
     @GetMapping("/api/v1/barnetrygd/feed", produces = ["application/json; charset=us-ascii"])
     fun feed(
             @Parameter(description = "Sist leste sekvensnummer.", required = true, example = "0")
-            @RequestParam("sistLesteSekvensId") sekvensnummer: Long,
-
-            @Parameter(description = "Maks antall elementer i svaret som kommer tilbake.", required = true, example = "100")
-            @RequestParam("maxAntall", required = false, defaultValue = "100") maksAntall: Int
-    ) : ResponseEntity<FeedMeldingDto> =
+            @RequestParam("sistLesteSekvensId") sekvensnummer: Long
+    ): ResponseEntity<FeedMeldingDto> =
             Result.runCatching {
                 konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
             }.fold(
