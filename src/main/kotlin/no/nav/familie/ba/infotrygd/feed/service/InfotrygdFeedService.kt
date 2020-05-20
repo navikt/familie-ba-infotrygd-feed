@@ -10,11 +10,11 @@ import java.time.LocalDate
 class InfotrygdFeedService(val feedRepository: FeedRepository) {
 
     fun opprettNyFeed(type: Type,
-            fnrBarn: String?,
-            fnrFar: String?,
-            fnrMor: String?,
-            fnrStonadsmottaker: String?,
-            datoStartNyBA: LocalDate?
+            fnrBarn: String? = null,
+            fnrFar: String? = null,
+            fnrMor: String? = null,
+            fnrStonadsmottaker: String? = null,
+            datoStartNyBA: LocalDate? = null
     ) = feedRepository.save(
                     Feed(
                             type = type,

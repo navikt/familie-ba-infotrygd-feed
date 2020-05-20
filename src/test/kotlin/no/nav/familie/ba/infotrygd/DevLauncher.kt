@@ -1,4 +1,4 @@
-package no.nav.familie.ba.infotrygd.feed
+package no.nav.familie.ba.infotrygd
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
