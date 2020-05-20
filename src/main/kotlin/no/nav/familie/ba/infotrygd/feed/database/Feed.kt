@@ -10,7 +10,7 @@ data class Feed(
         @Id
         @Column(name = "sekvens_id")
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "feed_seq_generator")
-        @SequenceGenerator(name = "feed_seq_generator", sequenceName = "feed_seq", allocationSize = 50)
+        @SequenceGenerator(name = "feed_seq_generator", sequenceName = "feed_seq", allocationSize = 1)
         val sekvensId: Long = 0,
 
         @Enumerated(EnumType.STRING)
