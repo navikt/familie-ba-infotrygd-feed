@@ -2,7 +2,9 @@ package no.nav.familie.ba.infotrygd.feed.service
 
 import junit.framework.Assert.assertEquals
 import no.nav.familie.ba.infotrygd.feed.database.DbContainerInitializer
+import no.nav.familie.ba.infotrygd.feed.database.Feed
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -23,15 +25,18 @@ class InfotrygdFeedServiceIntegrationTest {
     lateinit var infotrygdFeedService: InfotrygdFeedService
 
     @Test
-    fun `Persister feeds i database`() {
-        infotrygdFeedService.opprettNyFeed(type = Type.BA_Foedsel_v1, fnrBarn = "12345678910")
+    fun `Hent feeds fra database`() {
+        val fnrBarn = "12345678911"
+        infotrygdFeedService.opprettNyFeed(type = Type.BA_Foedsel_v1, fnrBarn = fnrBarn)
+        val feeds = infotrygdFeedService.hentMeldingerFraFeed(0)
+
+        Assertions.assertNotNull(feeds.find { it.type == Type.BA_Foedsel_v1 && it.fnrBarn == fnrBarn })
     }
 
     @Test
-    fun `Hent feeds fra database`() {
-        infotrygdFeedService.opprettNyFeed(type = Type.BA_Foedsel_v1, fnrBarn = "12345678910")
-        val feeds = infotrygdFeedService.hentMeldingerFraFeed(0)
+    fun `Hent feed-meldinger med høy sistLestSekvensId gir tom liste`() {
+        val feedListe = infotrygdFeedService.hentMeldingerFraFeed(1000)
 
-        assertEquals("", 1, feeds.size)
+        Assertions.assertTrue(feedListe.isEmpty())
     }
 }
