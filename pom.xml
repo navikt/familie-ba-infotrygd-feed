@@ -176,7 +176,7 @@
     </repositories>
 
     <build>
-        <sourceDirectory>${project.basedir}/src/no.nav.familie.ba.infotrygd.main/kotlin</sourceDirectory>
+        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <finalName>${project.artifactId}</finalName>
 

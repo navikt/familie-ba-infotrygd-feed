@@ -1,8 +1,6 @@
 package no.nav.familie.ba.infotrygd.feed.service
 
-import junit.framework.Assert.assertEquals
 import no.nav.familie.ba.infotrygd.feed.database.DbContainerInitializer
-import no.nav.familie.ba.infotrygd.feed.database.Feed
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Tag
