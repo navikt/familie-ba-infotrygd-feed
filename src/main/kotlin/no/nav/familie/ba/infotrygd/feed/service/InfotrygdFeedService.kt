@@ -11,16 +11,12 @@ class InfotrygdFeedService(val feedRepository: FeedRepository) {
 
     fun opprettNyFeed(type: Type,
             fnrBarn: String? = null,
-            fnrFar: String? = null,
-            fnrMor: String? = null,
             fnrStonadsmottaker: String? = null,
             datoStartNyBA: LocalDate? = null
     ) = feedRepository.save(
                     Feed(
                             type = type,
                             fnrBarn = fnrBarn,
-                            fnrFar = fnrFar,
-                            fnrMor = fnrMor,
                             fnrStonadsmottaker = fnrStonadsmottaker,
                             datoStartNyBa = datoStartNyBA
                     ))
