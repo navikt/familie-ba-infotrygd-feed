@@ -3,3 +3,6 @@ no.nav.security.jwt:
     discoveryurl: https://security-token-service.nais.adeo.no/rest/v1/sts/.well-known/openid-configuration
     accepted_audience: ${INFOTRYGD_CLIENT_ID}
 
+spring:
+  datasource:
+    url: jdbc:postgresql://A01DBVL014.adeo.no:5432/familie-ba-infotrygd-feed
