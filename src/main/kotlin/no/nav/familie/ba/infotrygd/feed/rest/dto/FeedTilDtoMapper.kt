@@ -13,9 +13,9 @@ fun konverterTilFeedMeldingDto(feedListe: List<Feed>): FeedMeldingDto =
                             metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                             innhold =
                             if (it.type == Type.BA_Vedtak_v1)
-                                InnholdVedtak(datoStartNyBA = it.datoStartNyBa!!, fnrStoenadsmottaker = it.fnrStonadsmottaker!!, fnrFar = it.fnrFar, fnrmor = it.fnrMor)
+                                InnholdVedtak(datoStartNyBA = it.datoStartNyBa!!, fnrStoenadsmottaker = it.fnrStonadsmottaker!!)
                             else
-                                InnholdFødsel(fnrBarn = it.fnrBarn!!, fnrFar = it.fnrFar, fnrmor = it.fnrMor),
+                                InnholdFødsel(fnrBarn = it.fnrBarn!!),
                             sekvensId = it.sekvensId.toInt(),
                             type = it.type
                     )

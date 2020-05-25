@@ -20,25 +20,21 @@ class TestDataController(val infotrygdFeedService: InfotrygdFeedService) {
 
     @PostMapping("/api/foedselsmelding", consumes = [MediaType.APPLICATION_JSON_VALUE])
     fun lagNyFødselsMelding(@RequestBody testDtoFødsel: TestDtoFødsel): ResponseEntity<String> =
-            opprettFeed(type = Type.BA_Foedsel_v1, fnrBarn = testDtoFødsel.fnrBarn, fnrFar = testDtoFødsel.fnrFar, fnrMor = testDtoFødsel.fnrMor)
+            opprettFeed(type = Type.BA_Foedsel_v1, fnrBarn = testDtoFødsel.fnrBarn)
 
     @PostMapping("/api/vedtakmelding")
     fun lagNyHenvendelsesMelding(@RequestBody testDtoVedtak: TestDtoVedtak): ResponseEntity<String> =
 
             opprettFeed(type = Type.BA_Vedtak_v1,
                     fnrStoenadsmottaker = testDtoVedtak.fnrStoenadsmottaker,
-                    datoStartNyBA = testDtoVedtak.datoStartNyBa,
-                    fnrFar = testDtoVedtak.fnrFar,
-                    fnrMor = testDtoVedtak.fnrMor
+                    datoStartNyBA = testDtoVedtak.datoStartNyBa
             )
 
     private fun opprettFeed(type: Type,
                             fnrBarn: String? = null,
-                            fnrFar: String? = null,
-                            fnrMor: String? = null,
                             fnrStoenadsmottaker: String? = null,
                             datoStartNyBA: LocalDate? = null): ResponseEntity<String> {
-        return Result.runCatching { infotrygdFeedService.opprettNyFeed(type = type, fnrBarn = fnrBarn, fnrFar = fnrFar, fnrMor = fnrMor, fnrStonadsmottaker = fnrStoenadsmottaker, datoStartNyBA = datoStartNyBA) }
+        return Result.runCatching { infotrygdFeedService.opprettNyFeed(type = type, fnrBarn = fnrBarn, fnrStonadsmottaker = fnrStoenadsmottaker, datoStartNyBA = datoStartNyBA) }
                 .fold(onSuccess = {
                     ResponseEntity.ok("Hendelse opprettet")
                 }, onFailure = {
