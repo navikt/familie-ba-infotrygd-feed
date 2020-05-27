@@ -7,4 +7,6 @@ interface FeedRepository : JpaRepository<Feed, Long> {
 
     @Query(value = "SELECT f FROM Feed f WHERE f.sekvensId > :sistLesteSekvensId ORDER BY f.sekvensId asc")
     fun finnMeldingerMedSekvensIdStørreEnn(sistLesteSekvensId: Long): List<Feed>
+
+
 }
