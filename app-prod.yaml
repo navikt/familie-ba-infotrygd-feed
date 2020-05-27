@@ -22,6 +22,9 @@ spec:
     path: /internal/prometheus
   vault:
     enabled: true
+    paths:
+      - kvPath: /azuread/data/prod/creds/familie-ba-infotrygd-feed
+        mountPath: /var/run/secrets/nais.io/azuread
   replicas:
     min: 1
     max: 1

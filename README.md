@@ -4,6 +4,8 @@ Feed-kommunikasjon mellom Barnetrygd og Infotrygd
 # Kjøring lokalt
 `DevLauncher` kjører appen lokalt med Spring-profilen `dev` satt. Appen tilgjengeliggjøres da på `localhost:8092`.  
 
+Sett BA_SAK_CLIENT_ID i run configuration
+
 
 ### Database
 
