@@ -4,12 +4,14 @@ import no.nav.familie.ba.infotrygd.feed.rest.dto.FødselsDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
 import no.nav.security.token.support.core.api.ProtectedWithClaims
+import no.nav.security.token.support.core.api.Unprotected
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 
-@RestController("/api/feed")
+@RestController
+@RequestMapping("/api/feed")
 @ProtectedWithClaims(issuer = "azuread")
 class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
 
@@ -30,7 +32,7 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
                 })
     }
 
-    @GetMapping("/ping")
+    @GetMapping("ping")
     fun ping(): String {
         return "pong"
     }

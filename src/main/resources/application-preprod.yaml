@@ -4,7 +4,7 @@ no.nav.security.jwt:
     accepted_audience: ${INFOTRYGD_CLIENT_ID}
   issuer.azuread:
     discoveryurl: https://login.microsoftonline.com/navq.onmicrosoft.com/v2.0/.well-known/openid-configuration
-    accepted_audience: ${BA_SAK_CLIENT_ID}
+    accepted_audience: ${CLIENT_ID}
     proxyurl: http://webproxy-nais.nav.no:8088
     cookie_name: azure_token
 
