@@ -13,13 +13,20 @@ class InfotrygdFeedService(val feedRepository: FeedRepository) {
             fnrBarn: String? = null,
             fnrStonadsmottaker: String? = null,
             datoStartNyBA: LocalDate? = null
-    ) = feedRepository.save(
-                    Feed(
-                            type = type,
-                            fnrBarn = fnrBarn,
-                            fnrStonadsmottaker = fnrStonadsmottaker,
-                            datoStartNyBa = datoStartNyBA
-                    ))
+    ) {
+        val erDuplikat = type.takeIf { it == Type.BA_Foedsel_v1 }
+                ?.let { feedRepository.erDuplikatFoedselsmelding(type, fnrBarn!!) }
+                ?: false
+
+        feedRepository.save(
+                Feed(
+                        type = type,
+                        fnrBarn = fnrBarn,
+                        fnrStonadsmottaker = fnrStonadsmottaker,
+                        datoStartNyBa = datoStartNyBA,
+                        erDuplikat = erDuplikat
+                ))
+    }
 
     fun hentMeldingerFraFeed(sistLestSekvensId: Long): List<Feed> =
             feedRepository.finnMeldingerMedSekvensIdStørreEnn(sistLestSekvensId)
