@@ -3,6 +3,7 @@ package no.nav.familie.ba.infotrygd.feed.service
 import no.nav.familie.ba.infotrygd.feed.database.DbContainerInitializer
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -18,6 +19,7 @@ import java.time.LocalDate
 @ContextConfiguration(initializers = [DbContainerInitializer::class])
 @ActiveProfiles("postgres")
 @Tag("integration")
+@Disabled("Midlertidig skrudd av")
 class InfotrygdFeedServiceIntegrationTest {
 
     @Autowired
