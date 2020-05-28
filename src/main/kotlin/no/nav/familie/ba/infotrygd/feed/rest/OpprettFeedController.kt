@@ -11,7 +11,7 @@ import java.time.LocalDate
 
 @RestController()
 @RequestMapping("/api/v1/feed")
-@ProtectedWithClaims(issuer = "sts")
+@ProtectedWithClaims(issuer = "azuread")
 class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
 
     @PostMapping("/foedselsmelding", consumes = [MediaType.APPLICATION_JSON_VALUE])
