@@ -1,14 +1,7 @@
 no.nav.security.jwt:
   issuer.sts:
     discoveryurl: https://security-token-service.nais.preprod.local/rest/v1/sts/.well-known/openid-configuration
-    accepted_audience: ${INFOTRYGD_CLIENT_ID}
-  issuer.azuread:
-    discoveryurl: https://login.microsoftonline.com/navq.onmicrosoft.com/v2.0/.well-known/openid-configuration
-    accepted_audience: ${CLIENT_ID}
-    proxyurl: http://webproxy-nais.nav.no:8088
-    cookie_name: azure_token
-
-ACCEPTED_CLIENTS: ${BA_SAK_CLIENT_ID}
+    accepted_audience: ${INFOTRYGD_CLIENT_ID},${BA_SAK_CLIENT_ID}
 
 spring:
   datasource:

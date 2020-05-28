@@ -9,8 +9,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 
-@RestController("/api/feed")
-@ProtectedWithClaims(issuer = "azuread")
+@RestController()
+@RequestMapping("/api/v1/feed")
+@ProtectedWithClaims(issuer = "sts")
 class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
 
     @PostMapping("/foedselsmelding", consumes = [MediaType.APPLICATION_JSON_VALUE])
@@ -28,10 +29,5 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
                 }, onFailure = {
                     ResponseEntity.badRequest().body("Klarte ikke opprette meldinger basert på hendelse")
                 })
-    }
-
-    @GetMapping("/ping")
-    fun ping(): String {
-        return "pong"
     }
 }
