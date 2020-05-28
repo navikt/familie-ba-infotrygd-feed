@@ -19,7 +19,6 @@ import java.time.LocalDate
 @ContextConfiguration(initializers = [DbContainerInitializer::class])
 @ActiveProfiles("postgres")
 @Tag("integration")
-@Disabled("Midlertidig skrudd av")
 class InfotrygdFeedServiceIntegrationTest {
 
     @Autowired
