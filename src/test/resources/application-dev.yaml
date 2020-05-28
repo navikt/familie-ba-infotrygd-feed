@@ -2,6 +2,10 @@ no.nav.security.jwt:
   issuer.sts:
     discoveryurl: http://metadata
     accepted_audience: aud-localhost
+  issuer.azuread:
+    discoveryurl: https://login.microsoftonline.com/navq.onmicrosoft.com/v2.0/.well-known/openid-configuration
+    accepted_audience: ${CLIENT_ID}
+    cookie_name: azure_token
 
 spring:
   jpa:
@@ -13,3 +17,5 @@ spring:
       ddl-auto: create
   flyway:
     enabled: false
+
+logging.level.no.nav.security: DEBUG
