@@ -43,3 +43,5 @@ spec:
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: prod
+    - name: CLIENT_ID
+      value: /run/secrets/nais.io/azuread/client_id
