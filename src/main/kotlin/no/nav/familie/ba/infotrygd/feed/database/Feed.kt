@@ -27,11 +27,11 @@ data class Feed(
         var fnrBarn: String? = null,
 
         @Column(name = "er_duplikat", nullable = true)
-        var erDuplikat: Boolean? = false
+        var duplikat: Boolean? = false
 
         ) {
         override fun toString(): String {
-                return "Feed(sekvensId=$sekvensId, type=$type, datoStartNyBa=$datoStartNyBa, erDuplikat=$erDuplikat"
+                return "Feed(sekvensId=$sekvensId, type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat"
         }
 }
 

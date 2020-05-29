@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 
 @RestController()
-@RequestMapping("/api/v1/feed")
+@RequestMapping("/api/v1/barnetrygd")
 @ProtectedWithClaims(issuer = "azuread")
 class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
 
-    @PostMapping("/foedselsmelding", consumes = [MediaType.APPLICATION_JSON_VALUE])
+    @PostMapping("/feed/foedselsmelding", consumes = [MediaType.APPLICATION_JSON_VALUE])
     fun lagNyFødselsMelding(@RequestBody fødselsDto: FødselsDto): ResponseEntity<String> {
         return opprettFeed(type = Type.BA_Foedsel_v1, fnrBarn = fødselsDto.fnrBarn)
     }

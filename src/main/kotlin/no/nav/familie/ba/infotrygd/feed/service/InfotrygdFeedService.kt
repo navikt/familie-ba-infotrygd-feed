@@ -24,7 +24,7 @@ class InfotrygdFeedService(val feedRepository: FeedRepository) {
                         fnrBarn = fnrBarn,
                         fnrStonadsmottaker = fnrStonadsmottaker,
                         datoStartNyBa = datoStartNyBA,
-                        erDuplikat = erDuplikat
+                        duplikat = erDuplikat
                 ))
     }
 

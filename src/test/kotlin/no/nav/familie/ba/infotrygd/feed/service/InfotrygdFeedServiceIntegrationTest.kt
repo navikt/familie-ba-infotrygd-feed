@@ -3,7 +3,6 @@ package no.nav.familie.ba.infotrygd.feed.service
 import no.nav.familie.ba.infotrygd.feed.database.DbContainerInitializer
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -30,7 +29,7 @@ class InfotrygdFeedServiceIntegrationTest {
         infotrygdFeedService.opprettNyFeed(type = Type.BA_Foedsel_v1, fnrBarn = fnrBarn)
         val feeds = infotrygdFeedService.hentMeldingerFraFeed(0)
 
-        Assertions.assertNotNull(feeds.find { it.type == Type.BA_Foedsel_v1 && it.fnrBarn == fnrBarn && it.erDuplikat == false})
+        Assertions.assertNotNull(feeds.find { it.type == Type.BA_Foedsel_v1 && it.fnrBarn == fnrBarn && it.duplikat == false})
     }
 
     @Test
