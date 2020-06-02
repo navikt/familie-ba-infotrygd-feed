@@ -62,9 +62,7 @@
             "required": [
               "opprettetDato"
             ]
-          }
-        },
-        "properties": {
+          },
           "innhold": {
             "$id": "/properties/elementer/items/properties/innhold",
             "type": "object",
@@ -110,8 +108,8 @@
       "required": [
         "type",
         "sekvensId",
-        "innhold",
-        "metadata"
+        "metadata",
+        "innhold"
       ]
     }
   },
