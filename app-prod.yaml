@@ -22,6 +22,9 @@ spec:
     path: /internal/prometheus
   vault:
     enabled: true
+    paths:
+      - kvPath: /azuread/data/prod/creds/familie-ba-infotrygd-feed
+        mountPath: /var/run/secrets/nais.io/azuread
   replicas:
     min: 1
     max: 1
@@ -40,3 +43,5 @@ spec:
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: prod
+    - name: AZURE_CLIENT_ID
+      value: /run/secrets/nais.io/azuread/client_id

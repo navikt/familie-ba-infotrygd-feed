@@ -4,7 +4,6 @@ Feed-kommunikasjon mellom Barnetrygd og Infotrygd
 # Kjøring lokalt
 `DevLauncher` kjører appen lokalt med Spring-profilen `dev` satt. Appen tilgjengeliggjøres da på `localhost:8092`.  
 
-
 ### Database
 
 Dersom man vil kjøre med postgres, kan man bytte til Spring-profilen `postgres`. Dette kan feks gjøres ved å sette
