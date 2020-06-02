@@ -9,10 +9,12 @@ import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
+@RequestMapping("/api/v1/barnetrygd")
 @ProtectedWithClaims(issuer = "sts")
 class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
 
@@ -20,7 +22,7 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
             summary = "Hent liste med hendelser.",
             description = "Henter hendelser med sekvensId større enn sistLesteSekvensId."
     )
-    @GetMapping("/api/v1/barnetrygd/feed", produces = ["application/json; charset=us-ascii"])
+    @GetMapping("/feed", produces = ["application/json; charset=us-ascii"])
     fun feed(
             @Parameter(description = "Sist leste sekvensnummer.", required = true, example = "0")
             @RequestParam("sistLesteSekvensId") sekvensnummer: Long
