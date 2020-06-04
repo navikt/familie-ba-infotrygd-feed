@@ -6,6 +6,7 @@ import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
 import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.springframework.context.annotation.Profile
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -38,7 +39,7 @@ class TestDataController(val infotrygdFeedService: InfotrygdFeedService) {
                 .fold(onSuccess = {
                     ResponseEntity.ok("Hendelse opprettet")
                 }, onFailure = {
-                    ResponseEntity.badRequest().body("Klarte ikke opprette meldinger basert på hendelse")
+                    ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Klarte ikke opprette meldinger basert på hendelse")
                 })
     }
 }
