@@ -2,6 +2,7 @@ package no.nav.familie.ba.infotrygd.feed.database
 
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity(name = "Feed")
@@ -27,11 +28,14 @@ data class Feed(
         var fnrBarn: String? = null,
 
         @Column(name = "er_duplikat", nullable = true)
-        var duplikat: Boolean? = false
+        var duplikat: Boolean? = false,
+
+        @Column(name = "opprettet_dato", nullable = true)
+        var opprettetDato: LocalDateTime
 
         ) {
         override fun toString(): String {
-                return "Feed(sekvensId=$sekvensId, type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat"
+                return "Feed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat"
         }
 }
 

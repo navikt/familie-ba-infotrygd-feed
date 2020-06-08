@@ -55,6 +55,16 @@ class InfotrygdFeedServiceIntegrationTest {
     }
 
     @Test
+    fun `Verifiser at maks definert antall feeds blir returnert`() {
+        val fnrStonadsmottaker = "10000000000"
+        for (i in 1..3) infotrygdFeedService.opprettNyFeed(type = Type.BA_Vedtak_v1,  datoStartNyBA = LocalDate.now(), fnrStonadsmottaker = fnrStonadsmottaker + i)
+
+        val feeds = infotrygdFeedService.hentMeldingerFraFeed(0, 2)
+
+        Assertions.assertEquals(2, feeds.size)
+    }
+
+    @Test
     fun `Hent feed-meldinger med høy sistLestSekvensId gir tom liste`() {
         val feedListe = infotrygdFeedService.hentMeldingerFraFeed(1000)
 
