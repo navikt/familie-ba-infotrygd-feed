@@ -10,7 +10,7 @@ fun konverterTilFeedMeldingDto(feedListe: List<Feed>): FeedMeldingDto =
                 inneholderFlereElementer = feedListe.size > 1,
                 elementer = feedListe.map {
                     FeedElement(
-                            metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                            metadata = ElementMetadata(opprettetDato = it.opprettetDato),
                             innhold =
                             if (it.type == Type.BA_Vedtak_v1)
                                 InnholdVedtak(datoStartNyBA = it.datoStartNyBa!!, fnrStoenadsmottaker = it.fnrStonadsmottaker!!)

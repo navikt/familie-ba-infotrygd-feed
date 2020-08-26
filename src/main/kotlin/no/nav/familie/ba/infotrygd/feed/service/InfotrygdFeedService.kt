@@ -3,8 +3,10 @@ package no.nav.familie.ba.infotrygd.feed.service
 import no.nav.familie.ba.infotrygd.feed.database.Feed
 import no.nav.familie.ba.infotrygd.feed.database.FeedRepository
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Service
 class InfotrygdFeedService(val feedRepository: FeedRepository) {
@@ -24,10 +26,11 @@ class InfotrygdFeedService(val feedRepository: FeedRepository) {
                         fnrBarn = fnrBarn,
                         fnrStonadsmottaker = fnrStonadsmottaker,
                         datoStartNyBa = datoStartNyBA,
-                        duplikat = erDuplikat
+                        duplikat = erDuplikat,
+                        opprettetDato = LocalDateTime.now()
                 ))
     }
 
-    fun hentMeldingerFraFeed(sistLestSekvensId: Long): List<Feed> =
-            feedRepository.finnMeldingerMedSekvensIdStørreEnn(sistLestSekvensId)
+    fun hentMeldingerFraFeed(sistLestSekvensId: Long, maxSize: Int = 100): List<Feed> =
+            feedRepository.finnMeldingerMedSekvensIdStørreEnn(PageRequest.of(0, maxSize), sistLestSekvensId)
 }
