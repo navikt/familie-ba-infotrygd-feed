@@ -9,13 +9,13 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
-import springfox.documentation.swagger2.annotations.EnableSwagger2
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc
 
 @SpringBootConfiguration
 @ConfigurationPropertiesScan
 @EnableJpaRepositories(ApplicationConfig.pakkenavn)
 @EnableJwtTokenValidation(ignore = ["org.springframework","springfox.documentation.swagger.web.ApiResourceController"])
-@EnableSwagger2
+@EnableSwagger2WebMvc
 @ComponentScan(ApplicationConfig.pakkenavn)
 class ApplicationConfig {
 
