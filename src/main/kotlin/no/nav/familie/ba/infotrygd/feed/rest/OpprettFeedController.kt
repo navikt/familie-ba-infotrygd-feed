@@ -2,6 +2,7 @@ package no.nav.familie.ba.infotrygd.feed.rest
 
 import no.nav.familie.ba.infotrygd.feed.rest.dto.FødselsDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
+import no.nav.familie.ba.infotrygd.feed.rest.dto.VedtakDto
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
 import no.nav.familie.kontrakter.felles.Ressurs
 import no.nav.security.token.support.core.api.ProtectedWithClaims
@@ -17,23 +18,39 @@ import java.time.LocalDate
 @ProtectedWithClaims(issuer = "azuread")
 class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
 
-    @PostMapping("/v1/feed/foedselsmelding", consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
+    @PostMapping("/v1/feed/foedselsmelding",
+                 consumes = [MediaType.APPLICATION_JSON_VALUE],
+                 produces = [MediaType.APPLICATION_JSON_VALUE])
     fun lagNyFødselsMelding(@RequestBody fødselsDto: FødselsDto): ResponseEntity<Ressurs<String>> {
         return opprettFeed(type = Type.BA_Foedsel_v1, fnrBarn = fødselsDto.fnrBarn)
+    }
+
+    @PostMapping("/v1/feed/vedtaksmelding",
+                 consumes = [MediaType.APPLICATION_JSON_VALUE],
+                 produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun lagNyVedtaksMelding(@RequestBody vedtakDto: VedtakDto): ResponseEntity<Ressurs<String>> {
+        return opprettFeed(type = Type.BA_Foedsel_v1, fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
+                           datoStartNyBA = vedtakDto.datoStartNyBa)
     }
 
     private fun opprettFeed(type: Type,
                             fnrBarn: String? = null,
                             fnrStoenadsmottaker: String? = null,
                             datoStartNyBA: LocalDate? = null): ResponseEntity<Ressurs<String>> {
-        return Result.runCatching { infotrygdFeedService.opprettNyFeed(type = type, fnrBarn = fnrBarn, fnrStonadsmottaker = fnrStoenadsmottaker, datoStartNyBA = datoStartNyBA) }
+        return Result.runCatching {
+            infotrygdFeedService.opprettNyFeed(type = type,
+                                               fnrBarn = fnrBarn,
+                                               fnrStonadsmottaker = fnrStoenadsmottaker,
+                                               datoStartNyBA = datoStartNyBA)
+        }
                 .fold(onSuccess = {
                     ResponseEntity.status(HttpStatus.CREATED).body(Ressurs.success(data = "Create"))
                 }, onFailure = {
                     secureLogger.error("Feil ved oppretting av fødselsmelding $fnrBarn.", it)
                     log.error("Feil ved oppretting av fødselsmelding", it)
 
-                    ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Ressurs.failure("Klarte ikke opprette meldinger."))
+                    ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                            .body(Ressurs.failure("Klarte ikke opprette meldinger."))
                 })
     }
 

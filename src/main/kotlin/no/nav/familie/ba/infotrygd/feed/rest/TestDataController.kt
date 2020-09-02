@@ -1,7 +1,7 @@
 package no.nav.familie.ba.infotrygd.feed.rest
 
 import no.nav.familie.ba.infotrygd.feed.rest.dto.FødselsDto
-import no.nav.familie.ba.infotrygd.feed.rest.dto.TestDtoVedtak
+import no.nav.familie.ba.infotrygd.feed.rest.dto.VedtakDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
 import no.nav.security.token.support.core.api.ProtectedWithClaims
@@ -24,11 +24,11 @@ class TestDataController(val infotrygdFeedService: InfotrygdFeedService) {
             opprettFeed(type = Type.BA_Foedsel_v1, fnrBarn = fødselsDto.fnrBarn)
 
     @PostMapping("/api/vedtakmelding")
-    fun lagNyHenvendelsesMelding(@RequestBody testDtoVedtak: TestDtoVedtak): ResponseEntity<String> =
+    fun lagNyHenvendelsesMelding(@RequestBody vedtakDto: VedtakDto): ResponseEntity<String> =
 
             opprettFeed(type = Type.BA_Vedtak_v1,
-                    fnrStoenadsmottaker = testDtoVedtak.fnrStoenadsmottaker,
-                    datoStartNyBA = testDtoVedtak.datoStartNyBa
+                        fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
+                        datoStartNyBA = vedtakDto.datoStartNyBa
             )
 
     private fun opprettFeed(type: Type,
