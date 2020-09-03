@@ -29,7 +29,7 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
                  consumes = [MediaType.APPLICATION_JSON_VALUE],
                  produces = [MediaType.APPLICATION_JSON_VALUE])
     fun lagNyVedtaksMelding(@RequestBody vedtakDto: VedtakDto): ResponseEntity<Ressurs<String>> {
-        return opprettFeed(type = Type.BA_Foedsel_v1, fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
+        return opprettFeed(type = Type.BA_Vedtak_v1, fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
                            datoStartNyBA = vedtakDto.datoStartNyBa)
     }
 
@@ -46,8 +46,8 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
                 .fold(onSuccess = {
                     ResponseEntity.status(HttpStatus.CREATED).body(Ressurs.success(data = "Create"))
                 }, onFailure = {
-                    secureLogger.error("Feil ved oppretting av fødselsmelding $fnrBarn.", it)
-                    log.error("Feil ved oppretting av fødselsmelding", it)
+                    secureLogger.error("Feil ved oppretting av feed $fnrBarn, $fnrStoenadsmottaker.", it)
+                    log.error("Feil ved oppretting av feed", it)
 
                     ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                             .body(Ressurs.failure("Klarte ikke opprette meldinger."))
