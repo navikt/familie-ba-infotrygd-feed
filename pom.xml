@@ -22,7 +22,7 @@
         <kotlin.version>1.4.0</kotlin.version>
         <felles.version>1.20200511201614_685f629</felles.version>
         <felles-kontrakter.version>2.0_20200514084206_4b65325</felles-kontrakter.version>
-        <springfox.version>2.6.1</springfox.version>
+        <springfox.version>2.10.5</springfox.version>
         <token-validation-spring.version>1.3.0</token-validation-spring.version>
         <spring-cloud.version>2.2.2.RELEASE</spring-cloud.version>
         <!--suppress UnresolvedMavenProperty  Ligger som secret i github-->
