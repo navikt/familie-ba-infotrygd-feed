@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @SpringBootConfiguration
 @ConfigurationPropertiesScan
 @EnableJpaRepositories(ApplicationConfig.pakkenavn)
-@EnableJwtTokenValidation(ignore = ["org.springframework","springfox.documentation.swagger.web.ApiResourceController"])
+@EnableJwtTokenValidation(ignore = ["org.springframework","springfox.documentation.swagger"])
 @ComponentScan(ApplicationConfig.pakkenavn)
 class ApplicationConfig {
 
