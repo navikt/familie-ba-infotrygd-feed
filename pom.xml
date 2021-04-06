@@ -19,7 +19,7 @@
         <sha1/>
         <changelist>-SNAPSHOT</changelist>
         <jvmTarget>11</jvmTarget>
-        <kotlin.version>1.4.0</kotlin.version>
+        <kotlin.version>1.4.31</kotlin.version>
         <felles.version>1.20200511201614_685f629</felles.version>
         <felles-kontrakter.version>2.0_20200514084206_4b65325</felles-kontrakter.version>
         <springfox.version>2.6.1</springfox.version>
@@ -84,7 +84,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>6.5.5</version>
+            <version>6.5.7</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.vault</groupId>
@@ -103,7 +103,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.2.15</version>
+            <version>42.2.19</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -113,7 +113,7 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>postgresql</artifactId>
-            <version>1.14.2</version>
+            <version>1.15.2</version>
             <scope>test</scope>
         </dependency>
 
