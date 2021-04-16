@@ -128,7 +128,7 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>postgresql</artifactId>
-            <version>1.15.2</version>
+            <version>1.15.3</version>
             <scope>test</scope>
         </dependency>
 
@@ -165,7 +165,7 @@
             <groupId>com.networknt</groupId>
             <artifactId>json-schema-validator</artifactId>
             <scope>test</scope>
-            <version>1.0.51</version>
+            <version>1.0.52</version>
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
