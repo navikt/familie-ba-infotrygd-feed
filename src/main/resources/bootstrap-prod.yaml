@@ -20,8 +20,8 @@ spring:
       generic:
         enabled: true
         backend: kv/prod/fss
-        application-name: familie-ba-infotrygd-feed/default
-        default-context: familie-ba-infotrygd-feed/default
+        application-name: familie-ba-infotrygd-feed/teamfamilie
+        default-context: familie-ba-infotrygd-feed/teamfamilie
     discovery:
       client:
         composite-indicator:
