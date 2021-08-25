@@ -16,12 +16,7 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '11'
-      - uses: actions/cache@v2.1.6
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-cache-${{ hashFiles('pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-cache-
+          cache: 'maven'
       - name: Bygg med maven + sonar
         env:
           TESTCONTAINERS_RYUK_DISABLED: true
