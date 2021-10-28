@@ -33,7 +33,8 @@
             ],
             "enum": [
               "BA_Vedtak_v1",
-              "BA_Foedsel_v1"
+              "BA_Foedsel_v1",
+              "BA_StartBehandling"
             ]
           },
           "sekvensId": {
@@ -92,8 +93,7 @@
             "oneOf": [
               {
                 "required": [
-                  "fnrStoenadsmottaker",
-                  "datoStartNyBA"
+                  "fnrStoenadsmottaker"
                 ]
               },
               {

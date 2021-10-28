@@ -14,6 +14,8 @@ fun konverterTilFeedMeldingDto(feedListe: List<Feed>): FeedMeldingDto =
                             innhold =
                             if (it.type == Type.BA_Vedtak_v1)
                                 InnholdVedtak(datoStartNyBA = it.datoStartNyBa!!, fnrStoenadsmottaker = it.fnrStonadsmottaker!!)
+                            else if (it.type == Type.BA_StartBehandling)
+                                InnholdStartBehandling(fnrStoenadsmottaker = it.fnrStonadsmottaker!!)
                             else
                                 InnholdFødsel(fnrBarn = it.fnrBarn!!),
                             sekvensId = it.sekvensId.toInt(),

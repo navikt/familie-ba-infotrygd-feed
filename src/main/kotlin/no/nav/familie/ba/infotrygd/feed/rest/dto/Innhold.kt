@@ -6,4 +6,6 @@ interface Innhold
 
 data class InnholdVedtak(val datoStartNyBA : LocalDate, val fnrStoenadsmottaker: String) : Innhold
 
+data class InnholdStartBehandling(val fnrStoenadsmottaker: String ) : Innhold
+
 data class InnholdFødsel(val fnrBarn: String) : Innhold
