@@ -89,7 +89,7 @@ class SchemaValidatorTest {
                     innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
                     metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                     sekvensId = 42,
-                    type = Type.BA_StartBehandling
+                    type = Type.BA_StartBeh
                 ))
         )
     }

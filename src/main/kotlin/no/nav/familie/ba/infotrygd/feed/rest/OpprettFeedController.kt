@@ -38,7 +38,7 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
                  consumes = [MediaType.APPLICATION_JSON_VALUE],
                  produces = [MediaType.APPLICATION_JSON_VALUE])
     fun lagNyStartBehandlingsMelding(@RequestBody startBehandlingDto: StartBehandlingDto): ResponseEntity<Ressurs<String>> {
-        return opprettFeed(type = Type.BA_StartBehandling, fnrStoenadsmottaker = startBehandlingDto.fnrStoenadsmottaker)
+        return opprettFeed(type = Type.BA_StartBeh, fnrStoenadsmottaker = startBehandlingDto.fnrStoenadsmottaker)
     }
 
     private fun opprettFeed(type: Type,

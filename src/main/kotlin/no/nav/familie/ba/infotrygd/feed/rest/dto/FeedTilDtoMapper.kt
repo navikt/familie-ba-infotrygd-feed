@@ -1,7 +1,6 @@
 package no.nav.familie.ba.infotrygd.feed.rest.dto
 
 import no.nav.familie.ba.infotrygd.feed.database.Feed
-import java.time.LocalDateTime
 
 
 fun konverterTilFeedMeldingDto(feedListe: List<Feed>): FeedMeldingDto =
@@ -14,7 +13,7 @@ fun konverterTilFeedMeldingDto(feedListe: List<Feed>): FeedMeldingDto =
                             innhold =
                             if (it.type == Type.BA_Vedtak_v1)
                                 InnholdVedtak(datoStartNyBA = it.datoStartNyBa!!, fnrStoenadsmottaker = it.fnrStonadsmottaker!!)
-                            else if (it.type == Type.BA_StartBehandling)
+                            else if (it.type == Type.BA_StartBeh)
                                 InnholdStartBehandling(fnrStoenadsmottaker = it.fnrStonadsmottaker!!)
                             else
                                 InnholdFødsel(fnrBarn = it.fnrBarn!!),
