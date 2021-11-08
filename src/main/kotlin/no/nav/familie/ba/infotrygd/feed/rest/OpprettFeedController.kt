@@ -1,6 +1,7 @@
 package no.nav.familie.ba.infotrygd.feed.rest
 
 import no.nav.familie.ba.infotrygd.feed.rest.dto.FødselsDto
+import no.nav.familie.ba.infotrygd.feed.rest.dto.StartBehandlingDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import no.nav.familie.ba.infotrygd.feed.rest.dto.VedtakDto
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
@@ -31,6 +32,13 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
     fun lagNyVedtaksMelding(@RequestBody vedtakDto: VedtakDto): ResponseEntity<Ressurs<String>> {
         return opprettFeed(type = Type.BA_Vedtak_v1, fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
                            datoStartNyBA = vedtakDto.datoStartNyBa)
+    }
+
+    @PostMapping("/v1/feed/startbehandlingsmelding",
+                 consumes = [MediaType.APPLICATION_JSON_VALUE],
+                 produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun lagNyStartBehandlingsMelding(@RequestBody startBehandlingDto: StartBehandlingDto): ResponseEntity<Ressurs<String>> {
+        return opprettFeed(type = Type.BA_StartBeh, fnrStoenadsmottaker = startBehandlingDto.fnrStoenadsmottaker)
     }
 
     private fun opprettFeed(type: Type,

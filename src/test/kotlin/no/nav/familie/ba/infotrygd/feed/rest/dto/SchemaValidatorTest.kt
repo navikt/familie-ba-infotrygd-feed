@@ -21,6 +21,13 @@ class SchemaValidatorTest {
     }
 
     @Test
+    fun `Dto for start behandling validerer mot schema`() {
+        val node = objectMapper.valueToTree<JsonNode>(testDtoForStartBehandling())
+        val feilListe = schema.validate(node)
+        Assertions.assertTrue(feilListe.isEmpty())
+    }
+
+    @Test
     fun `Dto for vedtak validerer mot schema`() {
         val node = objectMapper.valueToTree<JsonNode>(testDtoForVedtak())
         val feilListe = schema.validate(node)
@@ -69,6 +76,21 @@ class SchemaValidatorTest {
                                 sekvensId = 42,
                                 type = Type.BA_Vedtak_v1
                         ))
+        )
+    }
+
+    private fun testDtoForStartBehandling(fnrStoenadsmottaker: String =  "12345678910"): FeedMeldingDto {
+
+        return FeedMeldingDto(
+            tittel = "Feed schema validator test",
+            inneholderFlereElementer = false,
+            elementer = listOf(
+                FeedElement(
+                    innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
+                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                    sekvensId = 42,
+                    type = Type.BA_StartBeh
+                ))
         )
     }
 
