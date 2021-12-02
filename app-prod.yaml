@@ -42,8 +42,13 @@ spec:
     enabled: true
   ingresses:
     - https://familie-ba-infotrygd-feed.nais.adeo.no
+  azure:
+    application:
+      enabled: true
+  accessPolicy:
+    inbound:
+      rules:
+        - application: familie-ba-sak
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: prod
-    - name: AZURE_CLIENT_ID
-      value: /run/secrets/nais.io/azuread/client_id

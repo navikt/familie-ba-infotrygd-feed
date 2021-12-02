@@ -44,8 +44,13 @@ spec:
     - https://familie-ba-infotrygd-feed.dev.intern.nav.no
   secureLogs:
     enabled: true
+  azure:
+    application:
+      enabled: true
+  accessPolicy:
+    inbound:
+      rules:
+        - application: familie-ba-sak
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: preprod
-    - name: AZURE_CLIENT_ID
-      value: /run/secrets/nais.io/azuread/client_id

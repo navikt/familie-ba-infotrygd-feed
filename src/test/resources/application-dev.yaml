@@ -4,7 +4,7 @@ no.nav.security.jwt:
     accepted_audience: aud-localhost
   issuer.azuread:
     discoveryurl: https://login.microsoftonline.com/navq.onmicrosoft.com/v2.0/.well-known/openid-configuration
-    accepted_audience: ${CLIENT_ID}
+    accepted_audience: ${AZURE_APP_CLIENT_ID}
     cookie_name: azure_token
 
 spring:
