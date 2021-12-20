@@ -18,7 +18,7 @@
         <revision>1.0</revision>
         <sha1/>
         <changelist>-SNAPSHOT</changelist>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <kotlin.version>1.6.10</kotlin.version>
         <felles.version>1.20211202083100_64f46dd</felles.version>
         <felles-kontrakter.version>2.0_20211206094303_9d0455f</felles-kontrakter.version>
