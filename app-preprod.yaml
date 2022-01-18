@@ -42,6 +42,7 @@ spec:
     - https://familie-ba-infotrygd-feed.nais.preprod.local
     - https://familie-ba-infotrygd-feed.dev-fss.nais.io
     - https://familie-ba-infotrygd-feed.dev.intern.nav.no
+    - https://familie-ba-infotrygd-feed.dev-fss-pub.nais.io
   secureLogs:
     enabled: true
   azure:
