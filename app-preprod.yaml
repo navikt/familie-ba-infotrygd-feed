@@ -52,6 +52,7 @@ spec:
     inbound:
       rules:
         - application: familie-ba-sak
+          cluster: dev-gcp
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: preprod
