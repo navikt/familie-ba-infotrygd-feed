@@ -3,7 +3,7 @@ package no.nav.familie.ba.infotrygd.feed.rest
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import no.nav.familie.ba.infotrygd.feed.rest.dto.FeedMeldingDto
-import no.nav.familie.ba.infotrygd.feed.rest.dto.OpprettetDto
+import no.nav.familie.ba.infotrygd.feed.rest.dto.FeedOpprettetDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import no.nav.familie.ba.infotrygd.feed.rest.dto.konverterTilFeedMeldingDto
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
@@ -52,16 +52,17 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
 
     @PostMapping("/v1/feed/{type}/opprettet", produces = [MediaType.APPLICATION_JSON_VALUE])
     @ProtectedWithClaims(issuer = "azuread")
-    fun feedOpprettet(@PathVariable(required = false) type: Type = Type.BA_Vedtak_v1,
-                      @RequestBody fnr: String): ResponseEntity<Ressurs<OpprettetDto?>> {
+    fun feedOpprettet(@PathVariable type: Type,
+                      @RequestBody fnr: String): ResponseEntity<Ressurs<List<FeedOpprettetDto>>> {
         return Result.runCatching {
-            infotrygdFeedService.hentMeldingerFraFeed(fnr, type).maxByOrNull { it.opprettetDato }
-                ?.let { OpprettetDto(it.opprettetDato, it.datoStartNyBa) }
+            infotrygdFeedService.hentMeldingerFraFeed(fnr, type).map { FeedOpprettetDto(it.opprettetDato, it.datoStartNyBa) }
         }.fold(
             onSuccess = {
+                secureLogger.info("Fant ${it.size} feeds av type ${type.name} opprettet for fnr $fnr", it)
                 ResponseEntity.ok(Ressurs.success(it))
             },
             onFailure = {
+                secureLogger.error("Feil ved verifisering av ${type.name} feed for fnr $fnr", it)
                 ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
             }
         )

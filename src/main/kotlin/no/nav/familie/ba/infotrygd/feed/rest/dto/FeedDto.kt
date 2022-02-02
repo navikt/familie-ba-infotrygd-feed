@@ -9,4 +9,4 @@ data class VedtakDto(val datoStartNyBa: LocalDate, val fnrStoenadsmottaker: Stri
 
 data class StartBehandlingDto(val fnrStoenadsmottaker: String)
 
-data class OpprettetDto(val opprettetDato: LocalDateTime, val datoStartNyBa: LocalDate?)
+data class FeedOpprettetDto(val opprettetDato: LocalDateTime, val datoStartNyBa: LocalDate?)
