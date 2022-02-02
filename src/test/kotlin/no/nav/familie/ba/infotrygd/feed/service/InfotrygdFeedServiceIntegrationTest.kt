@@ -27,7 +27,7 @@ class InfotrygdFeedServiceIntegrationTest {
     fun `Hent feeds fra database`() {
         val fnrBarn = "12345678911"
         infotrygdFeedService.opprettNyFeed(type = Type.BA_Foedsel_v1, fnrBarn = fnrBarn)
-        val feeds = infotrygdFeedService.hentVedtaksmeldingerFraFeed(0)
+        val feeds = infotrygdFeedService.hentMeldingerFraFeed(0)
 
         Assertions.assertNotNull(feeds.find { it.type == Type.BA_Foedsel_v1 && it.fnrBarn == fnrBarn && it.duplikat == false})
     }
@@ -38,7 +38,7 @@ class InfotrygdFeedServiceIntegrationTest {
         infotrygdFeedService.opprettNyFeed(type = Type.BA_Foedsel_v1, fnrBarn = fnrBarn)
         infotrygdFeedService.opprettNyFeed(type = Type.BA_Foedsel_v1, fnrBarn = fnrBarn)
 
-        val feeds = infotrygdFeedService.hentVedtaksmeldingerFraFeed(0)
+        val feeds = infotrygdFeedService.hentMeldingerFraFeed(0)
 
         Assertions.assertEquals(1, feeds.filter { it.fnrBarn == fnrBarn }.size)
     }
@@ -49,7 +49,7 @@ class InfotrygdFeedServiceIntegrationTest {
         infotrygdFeedService.opprettNyFeed(type = Type.BA_Vedtak_v1,  datoStartNyBA = LocalDate.now(), fnrStonadsmottaker = fnrStonadsmottaker)
         infotrygdFeedService.opprettNyFeed(type = Type.BA_Vedtak_v1,  datoStartNyBA = LocalDate.now(), fnrStonadsmottaker = fnrStonadsmottaker)
 
-        val feeds = infotrygdFeedService.hentVedtaksmeldingerFraFeed(0)
+        val feeds = infotrygdFeedService.hentMeldingerFraFeed(0)
 
         Assertions.assertEquals(2, feeds.filter { it.fnrStonadsmottaker == fnrStonadsmottaker }.size)
     }
@@ -59,14 +59,14 @@ class InfotrygdFeedServiceIntegrationTest {
         val fnrStonadsmottaker = "10000000000"
         for (i in 1..3) infotrygdFeedService.opprettNyFeed(type = Type.BA_Vedtak_v1,  datoStartNyBA = LocalDate.now(), fnrStonadsmottaker = fnrStonadsmottaker + i)
 
-        val feeds = infotrygdFeedService.hentVedtaksmeldingerFraFeed(0, 2)
+        val feeds = infotrygdFeedService.hentMeldingerFraFeed(0, 2)
 
         Assertions.assertEquals(2, feeds.size)
     }
 
     @Test
     fun `Hent feed-meldinger med høy sistLestSekvensId gir tom liste`() {
-        val feedListe = infotrygdFeedService.hentVedtaksmeldingerFraFeed(1000)
+        val feedListe = infotrygdFeedService.hentMeldingerFraFeed(1000)
 
         Assertions.assertTrue(feedListe.isEmpty())
     }

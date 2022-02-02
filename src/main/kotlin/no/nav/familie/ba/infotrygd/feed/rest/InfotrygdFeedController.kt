@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/barnetrygd")
+@ProtectedWithClaims(issuer = "sts")
 class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
 
     @Operation(
@@ -30,13 +31,12 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
             description = "Henter hendelser med sekvensId større enn sistLesteSekvensId."
     )
     @GetMapping("/v1/feed", produces = ["application/json; charset=us-ascii"])
-    @ProtectedWithClaims(issuer = "sts")
     fun feed(
             @Parameter(description = "Sist leste sekvensnummer.", required = true, example = "0")
             @RequestParam("sistLesteSekvensId") sekvensnummer: Long
     ): ResponseEntity<FeedMeldingDto> =
             Result.runCatching {
-                konverterTilFeedMeldingDto(infotrygdFeedService.hentVedtaksmeldingerFraFeed(sistLestSekvensId = sekvensnummer))
+                konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
             }.fold(
                     onSuccess = {
                         log.info("Hentet ${it.elementer.size} feeds fra sekvensnummer $sekvensnummer")

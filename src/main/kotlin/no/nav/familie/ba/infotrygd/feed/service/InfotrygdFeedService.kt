@@ -31,7 +31,7 @@ class InfotrygdFeedService(val feedRepository: FeedRepository) {
                 ))
     }
 
-    fun hentVedtaksmeldingerFraFeed(sistLestSekvensId: Long, maxSize: Int = 100): List<Feed> =
+    fun hentMeldingerFraFeed(sistLestSekvensId: Long, maxSize: Int = 100): List<Feed> =
             feedRepository.finnMeldingerMedSekvensIdStørreEnn(PageRequest.of(0, maxSize), sistLestSekvensId)
 
     fun hentMeldingerFraFeed(fnr: String, type: Type): List<Feed> {
