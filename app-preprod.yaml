@@ -55,6 +55,9 @@ spec:
           cluster: dev-gcp
         - application: familie-ba-migrering
           cluster: dev-gcp
+        - application: ida
+          namespace: traktor
+          cluster: prod-fss
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: preprod
