@@ -70,4 +70,15 @@ class InfotrygdFeedServiceIntegrationTest {
 
         Assertions.assertTrue(feedListe.isEmpty())
     }
+
+    @Test
+    fun `Hent feed-meldinger av angitt type via fnr`() {
+        val fnr = "12345678910"
+        infotrygdFeedService.opprettNyFeed(type = Type.BA_Foedsel_v1, fnrBarn = fnr)
+        infotrygdFeedService.opprettNyFeed(type = Type.BA_Vedtak_v1, fnrStonadsmottaker = fnr)
+
+        Assertions.assertEquals(1, infotrygdFeedService.hentMeldingerFraFeed(fnr, Type.BA_Foedsel_v1).size)
+        Assertions.assertEquals(1, infotrygdFeedService.hentMeldingerFraFeed(fnr, Type.BA_Vedtak_v1).size)
+        Assertions.assertEquals(0, infotrygdFeedService.hentMeldingerFraFeed(fnr, Type.BA_StartBeh).size)
+    }
 }

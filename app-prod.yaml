@@ -51,6 +51,8 @@ spec:
       rules:
         - application: familie-ba-sak
           cluster: prod-gcp
+        - application: familie-ba-migrering
+          cluster: prod-gcp
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: prod

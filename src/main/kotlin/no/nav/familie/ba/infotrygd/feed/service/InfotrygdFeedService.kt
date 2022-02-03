@@ -33,4 +33,8 @@ class InfotrygdFeedService(val feedRepository: FeedRepository) {
 
     fun hentMeldingerFraFeed(sistLestSekvensId: Long, maxSize: Int = 100): List<Feed> =
             feedRepository.finnMeldingerMedSekvensIdStørreEnn(PageRequest.of(0, maxSize), sistLestSekvensId)
+
+    fun hentMeldingerFraFeed(fnr: String, type: Type): List<Feed> {
+        return feedRepository.finnMeldingerForFnr(fnr).filter { it.type == type }
+    }
 }
