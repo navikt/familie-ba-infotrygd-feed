@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.3</version>
+        <version>2.6.4</version>
     </parent>
 
     <properties>
@@ -23,7 +23,7 @@
         <felles.version>1.20220221162703_957e034</felles.version>
         <felles-kontrakter.version>2.0_20220222213922_64795e8</felles-kontrakter.version>
         <springdoc.version>1.6.6</springdoc.version>
-        <token-validation-spring.version>1.3.19</token-validation-spring.version>
+        <token-validation-spring.version>2.0.5</token-validation-spring.version>
         <spring.vault.version>2.3.2</spring.vault.version>
         <spring.cloud.version>3.1.0</spring.cloud.version>
         <!--suppress UnresolvedMavenProperty  Ligger som secret i github-->
@@ -95,7 +95,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>8.5.0</version>
+            <version>8.5.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.vault</groupId>
