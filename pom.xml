@@ -72,7 +72,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
-            <version>${spring.cloud.version}</version>
+            <version>3.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
