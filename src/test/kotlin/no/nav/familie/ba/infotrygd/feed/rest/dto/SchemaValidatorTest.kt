@@ -1,15 +1,19 @@
 package no.nav.familie.ba.infotrygd.feed.rest.dto
 
 import com.fasterxml.jackson.databind.JsonNode
+import com.networknt.schema.JsonMetaSchema
 import com.networknt.schema.JsonSchema
 import com.networknt.schema.JsonSchemaFactory
+import com.networknt.schema.NonValidationKeyword
 import com.networknt.schema.SpecVersion
+import com.networknt.schema.ValidatorTypeCode
 import no.nav.familie.kontrakter.felles.objectMapper
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.nio.charset.Charset
 import java.time.LocalDate
 import java.time.LocalDateTime
+
 
 class SchemaValidatorTest {
 
@@ -52,34 +56,36 @@ class SchemaValidatorTest {
     private fun testDtoForFødsel(fnr: String = "12345678910"): FeedMeldingDto {
 
         return FeedMeldingDto(
-                tittel = "Feed schema validator test",
-                inneholderFlereElementer = false,
-                elementer = listOf(
-                        FeedElement(
-                                InnholdFødsel(fnrBarn = fnr),
-                                metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                                sekvensId = 42,
-                                type = Type.BA_Foedsel_v1
-                        ))
+            tittel = "Feed schema validator test",
+            inneholderFlereElementer = false,
+            elementer = listOf(
+                FeedElement(
+                    InnholdFødsel(fnrBarn = fnr),
+                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                    sekvensId = 42,
+                    type = Type.BA_Foedsel_v1
+                )
+            )
         )
     }
 
-    private fun testDtoForVedtak(fnrStoenadsmottaker: String =  "12345678910"): FeedMeldingDto {
+    private fun testDtoForVedtak(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto {
 
         return FeedMeldingDto(
-                tittel = "Feed schema validator test",
-                inneholderFlereElementer = false,
-                elementer = listOf(
-                        FeedElement(
-                                innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
-                                metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                                sekvensId = 42,
-                                type = Type.BA_Vedtak_v1
-                        ))
+            tittel = "Feed schema validator test",
+            inneholderFlereElementer = false,
+            elementer = listOf(
+                FeedElement(
+                    innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
+                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                    sekvensId = 42,
+                    type = Type.BA_Vedtak_v1
+                )
+            )
         )
     }
 
-    private fun testDtoForStartBehandling(fnrStoenadsmottaker: String =  "12345678910"): FeedMeldingDto {
+    private fun testDtoForStartBehandling(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto {
 
         return FeedMeldingDto(
             tittel = "Feed schema validator test",
@@ -90,14 +96,31 @@ class SchemaValidatorTest {
                     metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
                     sekvensId = 42,
                     type = Type.BA_StartBeh
-                ))
+                )
+            )
         )
     }
 
     private val schema: JsonSchema
         get() {
             val schemaNode = objectMapper.readTree(hentFeedSchema())
-            return JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4).getSchema(schemaNode)
+
+            val URI = "https://json-schema.org/draft-04/schema"
+            val ID = "\$id"
+            val myJsonMetaSchema = JsonMetaSchema.Builder(URI)
+                .idKeyword(ID)
+                .addKeywords(ValidatorTypeCode.getNonFormatKeywords(SpecVersion.VersionFlag.V4)) // keywords that may validly exist, but have no validation aspect to them
+                .addKeywords(
+                    listOf(
+                        NonValidationKeyword("\$schema"),
+                        NonValidationKeyword("\$id"),
+                        NonValidationKeyword("examples")
+                    )
+                )
+                .build()
+
+            return JsonSchemaFactory.Builder().defaultMetaSchemaURI(URI).addMetaSchema(myJsonMetaSchema).build()
+                .getSchema(schemaNode)
         }
 
     private fun hentFeedSchema(): String {
