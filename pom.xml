@@ -20,7 +20,7 @@
         <changelist>-SNAPSHOT</changelist>
         <java.version>17</java.version>
         <kotlin.version>1.6.20</kotlin.version>
-        <felles.version>1.20220329165814_c0860ec</felles.version>
+        <felles.version>1.20220405120953_6df4d70</felles.version>
         <felles-kontrakter.version>2.0_20220405105519_4194bfd</felles-kontrakter.version>
         <springdoc.version>1.6.6</springdoc.version>
         <token-validation-spring.version>2.0.5</token-validation-spring.version>
