@@ -20,8 +20,8 @@
         <changelist>-SNAPSHOT</changelist>
         <java.version>17</java.version>
         <kotlin.version>1.6.21</kotlin.version>
-        <felles.version>1.20220406145421_5f46d64</felles.version>
-        <felles-kontrakter.version>2.0_20220427095224_ed1d481</felles-kontrakter.version>
+        <felles.version>1.20220503150007_21cbfef</felles.version>
+        <felles-kontrakter.version>2.0_20220513154245_fec66c5</felles-kontrakter.version>
         <springdoc.version>1.6.8</springdoc.version>
         <token-validation-spring.version>2.0.5</token-validation-spring.version>
         <spring.vault.version>2.3.2</spring.vault.version>
@@ -72,7 +72,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
-            <version>3.1.1</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -114,7 +114,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.3.4</version>
+            <version>42.3.5</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>
