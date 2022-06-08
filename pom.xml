@@ -23,7 +23,7 @@
         <felles.version>1.20220503150007_21cbfef</felles.version>
         <felles-kontrakter.version>2.0_20220603145941_a60ca7c</felles-kontrakter.version>
         <springdoc.version>1.6.9</springdoc.version>
-        <token-validation-spring.version>2.0.5</token-validation-spring.version>
+        <token-validation-spring.version>2.0.20</token-validation-spring.version>
         <spring.vault.version>2.3.2</spring.vault.version>
         <spring.cloud.version>3.1.1</spring.cloud.version>
         <!--suppress UnresolvedMavenProperty  Ligger som secret i github-->
