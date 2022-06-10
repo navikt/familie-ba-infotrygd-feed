@@ -27,33 +27,35 @@ import org.springframework.web.bind.annotation.RestController
 class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
 
     @Operation(
-            summary = "Hent liste med hendelser.",
-            description = "Henter hendelser med sekvensId større enn sistLesteSekvensId."
+        summary = "Hent liste med hendelser.",
+        description = "Henter hendelser med sekvensId større enn sistLesteSekvensId."
     )
     @GetMapping("/v1/feed", produces = ["application/json; charset=us-ascii"])
     fun feed(
-            @Parameter(description = "Sist leste sekvensnummer.", required = true, example = "0")
-            @RequestParam("sistLesteSekvensId") sekvensnummer: Long
+        @Parameter(description = "Sist leste sekvensnummer.", required = true, example = "0")
+        @RequestParam("sistLesteSekvensId") sekvensnummer: Long
     ): ResponseEntity<FeedMeldingDto> =
-            Result.runCatching {
-                konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
-            }.fold(
-                    onSuccess = {
-                        log.info("Hentet ${it.elementer.size} feeds fra sekvensnummer $sekvensnummer")
+        Result.runCatching {
+            konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
+        }.fold(
+            onSuccess = {
+                log.info("Hentet ${it.elementer.size} feeds fra sekvensnummer $sekvensnummer")
 
-                        ResponseEntity.ok(it)
-                    },
-                    onFailure = {
-                        log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
+                ResponseEntity.ok(it)
+            },
+            onFailure = {
+                log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
 
-                        ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-                    }
-            )
+                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+            }
+        )
 
     @PostMapping("/v1/feed/{type}/opprettet", produces = [MediaType.APPLICATION_JSON_VALUE])
     @ProtectedWithClaims(issuer = "azuread")
-    fun feedOpprettet(@PathVariable type: Type,
-                      @RequestBody fnr: String): ResponseEntity<Ressurs<List<FeedOpprettetDto>>> {
+    fun feedOpprettet(
+        @PathVariable type: Type,
+        @RequestBody fnr: String
+    ): ResponseEntity<Ressurs<List<FeedOpprettetDto>>> {
         return Result.runCatching {
             infotrygdFeedService.hentMeldingerFraFeed(fnr, type).map { FeedOpprettetDto(it.opprettetDato, it.datoStartNyBa) }
         }.fold(

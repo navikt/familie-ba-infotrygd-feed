@@ -11,7 +11,10 @@ import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDate
 
 @RestController()
@@ -19,50 +22,63 @@ import java.time.LocalDate
 @ProtectedWithClaims(issuer = "azuread")
 class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
 
-    @PostMapping("/v1/feed/foedselsmelding",
-                 consumes = [MediaType.APPLICATION_JSON_VALUE],
-                 produces = [MediaType.APPLICATION_JSON_VALUE])
+    @PostMapping(
+        "/v1/feed/foedselsmelding",
+        consumes = [MediaType.APPLICATION_JSON_VALUE],
+        produces = [MediaType.APPLICATION_JSON_VALUE]
+    )
     fun lagNyFødselsMelding(@RequestBody fødselsDto: FødselsDto): ResponseEntity<Ressurs<String>> {
         return opprettFeed(type = Type.BA_Foedsel_v1, fnrBarn = fødselsDto.fnrBarn)
     }
 
-    @PostMapping("/v1/feed/vedtaksmelding",
-                 consumes = [MediaType.APPLICATION_JSON_VALUE],
-                 produces = [MediaType.APPLICATION_JSON_VALUE])
+    @PostMapping(
+        "/v1/feed/vedtaksmelding",
+        consumes = [MediaType.APPLICATION_JSON_VALUE],
+        produces = [MediaType.APPLICATION_JSON_VALUE]
+    )
     fun lagNyVedtaksMelding(@RequestBody vedtakDto: VedtakDto): ResponseEntity<Ressurs<String>> {
-        return opprettFeed(type = Type.BA_Vedtak_v1, fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
-                           datoStartNyBA = vedtakDto.datoStartNyBa)
+        return opprettFeed(
+            type = Type.BA_Vedtak_v1, fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
+            datoStartNyBA = vedtakDto.datoStartNyBa
+        )
     }
 
-    @PostMapping("/v1/feed/startbehandlingsmelding",
-                 consumes = [MediaType.APPLICATION_JSON_VALUE],
-                 produces = [MediaType.APPLICATION_JSON_VALUE])
+    @PostMapping(
+        "/v1/feed/startbehandlingsmelding",
+        consumes = [MediaType.APPLICATION_JSON_VALUE],
+        produces = [MediaType.APPLICATION_JSON_VALUE]
+    )
     fun lagNyStartBehandlingsMelding(@RequestBody startBehandlingDto: StartBehandlingDto): ResponseEntity<Ressurs<String>> {
         return opprettFeed(type = Type.BA_StartBeh, fnrStoenadsmottaker = startBehandlingDto.fnrStoenadsmottaker)
     }
 
-    private fun opprettFeed(type: Type,
-                            fnrBarn: String? = null,
-                            fnrStoenadsmottaker: String? = null,
-                            datoStartNyBA: LocalDate? = null): ResponseEntity<Ressurs<String>> {
+    private fun opprettFeed(
+        type: Type,
+        fnrBarn: String? = null,
+        fnrStoenadsmottaker: String? = null,
+        datoStartNyBA: LocalDate? = null
+    ): ResponseEntity<Ressurs<String>> {
         return Result.runCatching {
-            infotrygdFeedService.opprettNyFeed(type = type,
-                                               fnrBarn = fnrBarn,
-                                               fnrStonadsmottaker = fnrStoenadsmottaker,
-                                               datoStartNyBA = datoStartNyBA)
+            infotrygdFeedService.opprettNyFeed(
+                type = type,
+                fnrBarn = fnrBarn,
+                fnrStonadsmottaker = fnrStoenadsmottaker,
+                datoStartNyBA = datoStartNyBA
+            )
         }
-                .fold(onSuccess = {
-                    ResponseEntity.status(HttpStatus.CREATED).body(Ressurs.success(data = "Create"))
-                }, onFailure = {
+            .fold(onSuccess = {
+                ResponseEntity.status(HttpStatus.CREATED).body(Ressurs.success(data = "Create"))
+            }, onFailure = {
                     secureLogger.error("Feil ved oppretting av feed $fnrBarn, $fnrStoenadsmottaker.", it)
                     log.error("Feil ved oppretting av feed", it)
 
                     ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                            .body(Ressurs.failure("Klarte ikke opprette meldinger."))
+                        .body(Ressurs.failure("Klarte ikke opprette meldinger."))
                 })
     }
 
     companion object {
+
         private val log = LoggerFactory.getLogger(this::class.java)
         private val secureLogger = LoggerFactory.getLogger("secureLogger")
     }

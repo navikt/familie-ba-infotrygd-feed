@@ -14,7 +14,6 @@ import java.nio.charset.Charset
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-
 class SchemaValidatorTest {
 
     @Test
@@ -51,7 +50,6 @@ class SchemaValidatorTest {
         val feilListe = schema.validate(node)
         Assertions.assertEquals(1, feilListe.size)
     }
-
 
     private fun testDtoForFødsel(fnr: String = "12345678910"): FeedMeldingDto {
 
