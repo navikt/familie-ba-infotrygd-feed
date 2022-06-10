@@ -1,9 +1,9 @@
 package no.nav.familie.ba.infotrygd.feed.database
 
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.Query
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
 
 interface FeedRepository : JpaRepository<Feed, Long> {
 

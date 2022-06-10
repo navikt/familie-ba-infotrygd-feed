@@ -12,9 +12,11 @@ import org.springframework.vault.core.lease.event.SecretLeaseCreatedEvent
 
 @Configuration
 @ConditionalOnProperty(name = ["spring.cloud.vault.enabled"])
-class VaultHikariConfig(private val container: SecretLeaseContainer,
-                        private val hikariDataSource: HikariDataSource,
-                        private val props: VaultDatabaseProperties) : InitializingBean {
+class VaultHikariConfig(
+    private val container: SecretLeaseContainer,
+    private val hikariDataSource: HikariDataSource,
+    private val props: VaultDatabaseProperties
+) : InitializingBean {
 
     private val log = LoggerFactory.getLogger(this::class.simpleName)
 
@@ -37,9 +39,8 @@ class VaultHikariConfig(private val container: SecretLeaseContainer,
 
     override fun toString(): String {
         return javaClass.simpleName + " [container=" +
-                container + ", hikariDataSource=" +
-                hikariDataSource + ", props=" +
-                props + "]"
+            container + ", hikariDataSource=" +
+            hikariDataSource + ", props=" +
+            props + "]"
     }
-
 }
