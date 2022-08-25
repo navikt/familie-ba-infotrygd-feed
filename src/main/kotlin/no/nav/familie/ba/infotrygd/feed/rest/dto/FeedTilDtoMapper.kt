@@ -10,12 +10,13 @@ fun konverterTilFeedMeldingDto(feedListe: List<Feed>): FeedMeldingDto =
             FeedElement(
                 metadata = ElementMetadata(opprettetDato = it.opprettetDato),
                 innhold =
-                if (it.type == Type.BA_Vedtak_v1)
+                if (it.type == Type.BA_Vedtak_v1) {
                     InnholdVedtak(datoStartNyBA = it.datoStartNyBa!!, fnrStoenadsmottaker = it.fnrStonadsmottaker!!)
-                else if (it.type == Type.BA_StartBeh)
+                } else if (it.type == Type.BA_StartBeh) {
                     InnholdStartBehandling(fnrStoenadsmottaker = it.fnrStonadsmottaker!!)
-                else
-                    InnholdFødsel(fnrBarn = it.fnrBarn!!),
+                } else {
+                    InnholdFødsel(fnrBarn = it.fnrBarn!!)
+                },
                 sekvensId = it.sekvensId.toInt(),
                 type = it.type
             )

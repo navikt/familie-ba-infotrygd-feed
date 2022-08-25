@@ -38,7 +38,8 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
     )
     fun lagNyVedtaksMelding(@RequestBody vedtakDto: VedtakDto): ResponseEntity<Ressurs<String>> {
         return opprettFeed(
-            type = Type.BA_Vedtak_v1, fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
+            type = Type.BA_Vedtak_v1,
+            fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
             datoStartNyBA = vedtakDto.datoStartNyBa
         )
     }

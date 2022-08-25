@@ -33,7 +33,8 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
     @GetMapping("/v1/feed", produces = ["application/json; charset=us-ascii"])
     fun feed(
         @Parameter(description = "Sist leste sekvensnummer.", required = true, example = "0")
-        @RequestParam("sistLesteSekvensId") sekvensnummer: Long
+        @RequestParam("sistLesteSekvensId")
+        sekvensnummer: Long
     ): ResponseEntity<FeedMeldingDto> =
         Result.runCatching {
             konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
