@@ -52,7 +52,6 @@ class SchemaValidatorTest {
     }
 
     private fun testDtoForFødsel(fnr: String = "12345678910"): FeedMeldingDto {
-
         return FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
@@ -68,7 +67,6 @@ class SchemaValidatorTest {
     }
 
     private fun testDtoForVedtak(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto {
-
         return FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
@@ -84,7 +82,6 @@ class SchemaValidatorTest {
     }
 
     private fun testDtoForStartBehandling(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto {
-
         return FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
