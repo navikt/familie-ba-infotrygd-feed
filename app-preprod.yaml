@@ -53,6 +53,8 @@ spec:
       rules:
         - application: familie-ba-sak
           cluster: dev-gcp
+        - application: familie-ks-sak
+          cluster: dev-gcp
         - application: familie-ba-migrering
           cluster: dev-gcp
         - application: ida
