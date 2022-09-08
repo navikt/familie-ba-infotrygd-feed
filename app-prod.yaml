@@ -51,6 +51,8 @@ spec:
       rules:
         - application: familie-ba-sak
           cluster: prod-gcp
+        - application: familie-ks-sak
+          cluster: prod-gcp
         - application: familie-ba-migrering
           cluster: prod-gcp
   env:
