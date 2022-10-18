@@ -22,7 +22,7 @@
         <kotlin.version>1.7.20</kotlin.version>
         <felles.version>1.20221006150009_46021ed</felles.version>
         <felles-kontrakter.version>2.0_20221018092135_893cc71</felles-kontrakter.version>
-        <springdoc.version>1.6.11</springdoc.version>
+        <springdoc.version>1.6.12</springdoc.version>
         <token-validation-spring.version>2.1.6</token-validation-spring.version>
         <spring.vault.version>2.3.2</spring.vault.version>
         <spring.cloud.version>3.1.1</spring.cloud.version>
