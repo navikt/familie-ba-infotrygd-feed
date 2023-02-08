@@ -19,7 +19,7 @@
         <sha1/>
         <changelist>-SNAPSHOT</changelist>
         <java.version>17</java.version>
-        <kotlin.version>1.7.22</kotlin.version>
+        <kotlin.version>1.8.10</kotlin.version>
         <felles.version>1.20230116145510_2afcc20</felles.version>
         <felles-kontrakter.version>2.0_20230203100416_d4bab2f</felles-kontrakter.version>
         <springdoc.version>1.6.14</springdoc.version>
