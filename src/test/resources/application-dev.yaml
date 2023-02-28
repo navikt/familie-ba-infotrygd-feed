@@ -1,6 +1,6 @@
 no.nav.security.jwt:
   issuer.sts:
-    discoveryurl: http://metadata
+    discoveryurl: http://localhost:${mock-oauth2-server.port}/selvbetjening/.well-known/openid-configuration
     accepted_audience: aud-localhost
   issuer.azuread:
     discoveryurl: https://login.microsoftonline.com/navq.onmicrosoft.com/v2.0/.well-known/openid-configuration

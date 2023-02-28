@@ -2,6 +2,7 @@ package no.nav.familie.ba.infotrygd.feed.service
 
 import no.nav.familie.ba.infotrygd.feed.database.DbContainerInitializer
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
+import no.nav.security.token.support.spring.test.EnableMockOAuth2Server
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
@@ -18,6 +19,7 @@ import java.time.LocalDate
 @ContextConfiguration(initializers = [DbContainerInitializer::class])
 @ActiveProfiles("postgres")
 @Tag("integration")
+@EnableMockOAuth2Server
 class InfotrygdFeedServiceIntegrationTest {
 
     @Autowired
