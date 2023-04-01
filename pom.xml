@@ -23,7 +23,7 @@
         <felles-kontrakter.version>3.0_20230314075921_27fa962-JAKARTA</felles-kontrakter.version>
         <felles.version>2.20230210162649_a258d57-SPRING_BOOT_3</felles.version>
         <springdoc.version>2.0.4</springdoc.version>
-        <token-validation-spring.version>3.0.3</token-validation-spring.version>
+        <token-validation-spring.version>3.0.9</token-validation-spring.version>
         <spring.vault.version>3.0.2</spring.vault.version>
         <spring.cloud.version>4.0.0</spring.cloud.version>
         <!--suppress UnresolvedMavenProperty  Ligger som secret i github-->
@@ -289,8 +289,7 @@
                         <phase>verify</phase>
                         <configuration>
                             <target name="ktlint">
-                                <java taskname="ktlint" dir="${basedir}" fork="true" failonerror="true"
-                                      classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
+                                <java taskname="ktlint" dir="${basedir}" fork="true" failonerror="true" classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
                                     <arg value="src/**/*.kt"/>
                                 </java>
                             </target>
@@ -304,8 +303,7 @@
                         <phase>validate</phase>
                         <configuration>
                             <target name="ktlint">
-                                <java taskname="ktlint" dir="${basedir}" fork="true" failonerror="true"
-                                      classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
+                                <java taskname="ktlint" dir="${basedir}" fork="true" failonerror="true" classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
                                     <jvmarg value="--add-opens"/>
                                     <jvmarg value="java.base/java.lang=ALL-UNNAMED"/>
                                     <arg value="-F"/>
