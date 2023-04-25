@@ -1,9 +1,8 @@
 name: Build-Deploy-Preprod
 on:
-  push:
-    branches-ignore:
-      - 'master'
   workflow_dispatch:
+  pull_request:
+    types: [ opened, synchronize, reopened, ready_for_review ]
 env:
   IMAGE: ghcr.io/navikt/familie-ba-infotrygd-feed:${{ github.sha }}
 jobs:
