@@ -1,11 +1,11 @@
-name: Build-Deploy-Preprod
+name: Merge queue
 on:
   merge_group:
 env:
   IMAGE: ghcr.io/navikt/familie-ba-infotrygd-feed:${{ github.sha }}
 jobs:
   build:
-    name: Bygg app/image, push til github, deploy til dev-fss
+    name: Bygg app for merge queue
     runs-on: ubuntu-latest
     permissions:
       packages: write
