@@ -27,7 +27,7 @@ jobs:
         run: |
           mvn antrun:run@ktlint
   deploy-to-dev:
-    name: Bygg app/image, push til github, deploy til dev-fss
+    name: Bygg familie-ba-infotrygd-feed
     runs-on: ubuntu-latest
     permissions:
       packages: write
