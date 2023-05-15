@@ -32,6 +32,7 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <!--suppress UnresolvedMavenProperty Ligger som secret i github-->
         <sonar.login>${SONAR_LOGIN}</sonar.login>
+        <jackson.module.kotlin.version>2.15.0</jackson.module.kotlin.version>
     </properties>
 
     <dependencies>
@@ -94,6 +95,12 @@
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-kotlin</artifactId>
+            <version>${jackson.module.kotlin.version}</version>
         </dependency>
 
         <!-- Database -->
