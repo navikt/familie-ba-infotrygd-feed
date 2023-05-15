@@ -37,6 +37,12 @@ jobs:
         run: docker push ${IMAGE}
       - name: Push Docker image med 'latest' tag
         run: docker push ${IMAGE_LATEST}
+      - name: Deploy til dev-fss
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-fss
+          RESOURCE: app-preprod.yaml
       - name: Deploy til prod-fss
         uses: nais/deploy/actions/deploy@v1
         env:
