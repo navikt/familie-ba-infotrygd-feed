@@ -5,7 +5,7 @@ env:
   IMAGE: ghcr.io/navikt/familie-ba-infotrygd-feed:${{ github.sha }}
 jobs:
   build:
-    name: Bygg app for merge queue
+    name: Bygg familie-ba-infotrygd-feed
     runs-on: ubuntu-latest
     permissions:
       packages: write
