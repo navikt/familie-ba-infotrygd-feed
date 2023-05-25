@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.6</version>
+        <version>3.1.0</version>
     </parent>
 
     <properties>
@@ -20,7 +20,7 @@
         <changelist>-SNAPSHOT</changelist>
         <java.version>17</java.version>
         <kotlin.version>1.8.21</kotlin.version>
-        <felles-kontrakter.version>3.0_20230404163639_edb8619-JAKARTA</felles-kontrakter.version>
+        <felles-kontrakter.version>3.0_20230524125530_3650ce1</felles-kontrakter.version>
         <felles.version>2.20230210162649_a258d57-SPRING_BOOT_3</felles.version>
         <springdoc.version>2.1.0</springdoc.version>
         <token-validation-spring.version>3.1.0</token-validation-spring.version>
@@ -32,7 +32,7 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <!--suppress UnresolvedMavenProperty Ligger som secret i github-->
         <sonar.login>${SONAR_LOGIN}</sonar.login>
-        <jackson.module.kotlin.version>2.15.0</jackson.module.kotlin.version>
+        <jackson.module.kotlin.version>2.15.1</jackson.module.kotlin.version>
     </properties>
 
     <dependencies>
@@ -175,7 +175,7 @@
             <groupId>com.networknt</groupId>
             <artifactId>json-schema-validator</artifactId>
             <scope>test</scope>
-            <version>1.0.81</version>
+            <version>1.0.82</version>
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
