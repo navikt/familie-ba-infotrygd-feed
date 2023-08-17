@@ -18,7 +18,7 @@ CREATE DATABASE "familie-ba-infotrygd-feed";
 ```
 
 ## Produksjonssetting
-Appen blir produksjonssatt ved å kjøre `tag.sh` som ligger i `.github`. Dette scriptet tagger den seneste commiten i master med det neste versjonsnummeret, og pusher tagen til github-repositoriet.
+Appen blir produksjonssatt ved å kjøre `tag.sh` som ligger i `.github`. Dette scriptet tagger den seneste commiten i main med det neste versjonsnummeret, og pusher tagen til github-repositoriet.
 
 Hvis den siste tagen er `v0.5`, vil `tag.sh -M` pushe tagen `v1.0`, og `tag.sh -m` pushe tagen `v0.6`.
 

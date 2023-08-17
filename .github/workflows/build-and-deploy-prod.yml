@@ -2,7 +2,7 @@ name: Build-Deploy-Prod
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 env:
   IMAGE: ghcr.io/navikt/familie-ba-infotrygd-feed:${{ github.sha }}
   IMAGE_LATEST: ghcr.io/navikt/familie-ba-infotrygd-feed:latest
