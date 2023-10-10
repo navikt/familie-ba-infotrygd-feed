@@ -1,4 +1,4 @@
-name: Merge queue
+name: Build on merge queue
 on:
   merge_group:
 env:
