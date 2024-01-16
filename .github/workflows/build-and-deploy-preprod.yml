@@ -57,7 +57,7 @@ jobs:
 
       - name: Deploy til dev-fss
         if: github.triggering_actor != 'dependabot[bot]'
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-fss
