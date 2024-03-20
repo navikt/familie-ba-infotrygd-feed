@@ -15,9 +15,8 @@ import org.springframework.vault.core.lease.event.SecretLeaseCreatedEvent
 class VaultHikariConfig(
     private val container: SecretLeaseContainer,
     private val hikariDataSource: HikariDataSource,
-    private val props: VaultDatabaseProperties
+    private val props: VaultDatabaseProperties,
 ) : InitializingBean {
-
     private val log = LoggerFactory.getLogger(this::class.simpleName)
 
     override fun afterPropertiesSet() {

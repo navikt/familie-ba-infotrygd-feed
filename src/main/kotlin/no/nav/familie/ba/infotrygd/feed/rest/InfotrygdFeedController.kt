@@ -25,16 +25,15 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/barnetrygd")
 @ProtectedWithClaims(issuer = "sts")
 class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
-
     @Operation(
         summary = "Hent liste med hendelser.",
-        description = "Henter hendelser med sekvensId større enn sistLesteSekvensId."
+        description = "Henter hendelser med sekvensId større enn sistLesteSekvensId.",
     )
     @GetMapping("/v1/feed", produces = ["application/json; charset=us-ascii"])
     fun feed(
         @Parameter(description = "Sist leste sekvensnummer.", required = true, example = "0")
         @RequestParam("sistLesteSekvensId")
-        sekvensnummer: Long
+        sekvensnummer: Long,
     ): ResponseEntity<FeedMeldingDto> =
         Result.runCatching {
             konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
@@ -48,19 +47,19 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
                 log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
 
                 ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-            }
+            },
         )
 
     @Operation(
         summary = "Hent liste med hendelser.",
-        description = "Henter hendelser med sekvensId større enn sistLesteSekvensId."
+        description = "Henter hendelser med sekvensId større enn sistLesteSekvensId.",
     )
     @GetMapping("/v1/feedazure", produces = ["application/json; charset=us-ascii"])
     @ProtectedWithClaims(issuer = "azuread")
     fun feedAzure(
         @Parameter(description = "Sist leste sekvensnummer.", required = true, example = "0")
         @RequestParam("sistLesteSekvensId")
-        sekvensnummer: Long
+        sekvensnummer: Long,
     ): ResponseEntity<FeedMeldingDto> =
         Result.runCatching {
             konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
@@ -74,14 +73,14 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
                 log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
 
                 ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-            }
+            },
         )
 
     @PostMapping("/v1/feed/{type}/opprettet", produces = [MediaType.APPLICATION_JSON_VALUE])
     @ProtectedWithClaims(issuer = "azuread")
     fun feedOpprettet(
         @PathVariable type: Type,
-        @RequestBody fnr: String
+        @RequestBody fnr: String,
     ): ResponseEntity<Ressurs<List<FeedOpprettetDto>>> {
         return Result.runCatching {
             infotrygdFeedService.hentMeldingerFraFeed(fnr, type).map { FeedOpprettetDto(it.opprettetDato, it.datoStartNyBa) }
@@ -93,7 +92,7 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
             onFailure = {
                 secureLogger.error("Feil ved verifisering av ${type.name} feed for fnr $fnr", it)
                 ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-            }
+            },
         )
     }
 

@@ -10,16 +10,16 @@ import java.time.LocalDateTime
 
 @Service
 class InfotrygdFeedService(val feedRepository: FeedRepository) {
-
     fun opprettNyFeed(
         type: Type,
         fnrBarn: String? = null,
         fnrStonadsmottaker: String? = null,
-        datoStartNyBA: LocalDate? = null
+        datoStartNyBA: LocalDate? = null,
     ) {
-        val erDuplikat = type.takeIf { it == Type.BA_Foedsel_v1 }
-            ?.let { feedRepository.erDuplikatFoedselsmelding(type, fnrBarn!!) }
-            ?: false
+        val erDuplikat =
+            type.takeIf { it == Type.BA_Foedsel_v1 }
+                ?.let { feedRepository.erDuplikatFoedselsmelding(type, fnrBarn!!) }
+                ?: false
 
         feedRepository.save(
             Feed(
@@ -28,15 +28,20 @@ class InfotrygdFeedService(val feedRepository: FeedRepository) {
                 fnrStonadsmottaker = fnrStonadsmottaker,
                 datoStartNyBa = datoStartNyBA,
                 duplikat = erDuplikat,
-                opprettetDato = LocalDateTime.now()
-            )
+                opprettetDato = LocalDateTime.now(),
+            ),
         )
     }
 
-    fun hentMeldingerFraFeed(sistLestSekvensId: Long, maxSize: Int = 100): List<Feed> =
-        feedRepository.finnMeldingerMedSekvensIdStørreEnn(PageRequest.of(0, maxSize), sistLestSekvensId)
+    fun hentMeldingerFraFeed(
+        sistLestSekvensId: Long,
+        maxSize: Int = 100,
+    ): List<Feed> = feedRepository.finnMeldingerMedSekvensIdStørreEnn(PageRequest.of(0, maxSize), sistLestSekvensId)
 
-    fun hentMeldingerFraFeed(fnr: String, type: Type): List<Feed> {
+    fun hentMeldingerFraFeed(
+        fnr: String,
+        type: Type,
+    ): List<Feed> {
         return feedRepository.finnMeldingerForFnr(fnr).filter { it.type == type }
     }
 }

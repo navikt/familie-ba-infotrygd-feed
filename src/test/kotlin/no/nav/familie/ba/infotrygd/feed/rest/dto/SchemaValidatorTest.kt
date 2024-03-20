@@ -15,7 +15,6 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 class SchemaValidatorTest {
-
     @Test
     fun `Dto for fødsel validerer mot schema`() {
         val node = objectMapper.valueToTree<JsonNode>(testDtoForFødsel())
@@ -55,14 +54,15 @@ class SchemaValidatorTest {
         return FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
-            elementer = listOf(
-                FeedElement(
-                    InnholdFødsel(fnrBarn = fnr),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = Type.BA_Foedsel_v1
-                )
-            )
+            elementer =
+                listOf(
+                    FeedElement(
+                        InnholdFødsel(fnrBarn = fnr),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = Type.BA_Foedsel_v1,
+                    ),
+                ),
         )
     }
 
@@ -70,14 +70,15 @@ class SchemaValidatorTest {
         return FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
-            elementer = listOf(
-                FeedElement(
-                    innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = Type.BA_Vedtak_v1
-                )
-            )
+            elementer =
+                listOf(
+                    FeedElement(
+                        innhold = InnholdVedtak(datoStartNyBA = LocalDate.now(), fnrStoenadsmottaker = fnrStoenadsmottaker),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = Type.BA_Vedtak_v1,
+                    ),
+                ),
         )
     }
 
@@ -85,14 +86,15 @@ class SchemaValidatorTest {
         return FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
-            elementer = listOf(
-                FeedElement(
-                    innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
-                    metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
-                    sekvensId = 42,
-                    type = Type.BA_StartBeh
-                )
-            )
+            elementer =
+                listOf(
+                    FeedElement(
+                        innhold = InnholdStartBehandling(fnrStoenadsmottaker = fnrStoenadsmottaker),
+                        metadata = ElementMetadata(opprettetDato = LocalDateTime.now()),
+                        sekvensId = 42,
+                        type = Type.BA_StartBeh,
+                    ),
+                ),
         )
     }
 
@@ -100,21 +102,24 @@ class SchemaValidatorTest {
         get() {
             val schemaNode = objectMapper.readTree(hentFeedSchema())
 
-            val URI = "https://json-schema.org/draft-04/schema"
-            val ID = "\$id"
-            val myJsonMetaSchema = JsonMetaSchema.Builder(URI)
-                .idKeyword(ID)
-                .keywords(ValidatorTypeCode.getKeywords(SpecVersion.VersionFlag.V4)) // keywords that may validly exist, but have no validation aspect to them
-                .keywords(
-                    listOf(
-                        NonValidationKeyword("\$schema"),
-                        NonValidationKeyword("\$id"),
-                        NonValidationKeyword("examples")
+            val uri = "https://json-schema.org/draft-04/schema"
+            val id = "\$id"
+            val myJsonMetaSchema =
+                JsonMetaSchema.Builder(uri)
+                    .idKeyword(id)
+                    .keywords(ValidatorTypeCode.getKeywords(SpecVersion.VersionFlag.V4))
+                    .keywords(
+                        listOf(
+                            NonValidationKeyword("\$schema"),
+                            NonValidationKeyword("\$id"),
+                            NonValidationKeyword("examples"),
+                        ),
                     )
-                )
-                .build()
+                    .build()
 
-            return JsonSchemaFactory.builder(JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4)).defaultMetaSchemaIri(URI).metaSchema(myJsonMetaSchema).build()
+            return JsonSchemaFactory.builder(
+                JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4),
+            ).defaultMetaSchemaIri(uri).metaSchema(myJsonMetaSchema).build()
                 .getSchema(schemaNode)
         }
 

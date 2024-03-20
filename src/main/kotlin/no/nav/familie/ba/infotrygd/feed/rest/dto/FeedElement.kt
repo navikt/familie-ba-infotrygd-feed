@@ -4,5 +4,5 @@ data class FeedElement(
     val innhold: Innhold,
     val metadata: ElementMetadata,
     val sekvensId: Int,
-    val type: Type
+    val type: Type,
 )

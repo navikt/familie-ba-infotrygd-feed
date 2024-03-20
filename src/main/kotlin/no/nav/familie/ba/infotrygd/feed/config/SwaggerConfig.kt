@@ -10,13 +10,12 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class SwaggerConfig {
-
     @Bean
     fun openApi(): OpenAPI {
         return OpenAPI().info(Info().title("Infotrygd feed API"))
             .components(
                 Components()
-                    .addSecuritySchemes("bearer", bearerTokenSecurityScheme())
+                    .addSecuritySchemes("bearer", bearerTokenSecurityScheme()),
             )
             .addSecurityItem(SecurityRequirement().addList("bearer", listOf("read", "write")))
     }

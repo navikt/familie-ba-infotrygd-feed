@@ -19,39 +19,49 @@ import java.time.LocalDate
 @Profile("!prod")
 @ProtectedWithClaims(issuer = "sts")
 class TestDataController(val infotrygdFeedService: InfotrygdFeedService) {
-
     @PostMapping("/api/foedselsmelding", consumes = [MediaType.APPLICATION_JSON_VALUE])
-    fun lagNyFødselsMelding(@RequestBody fødselsDto: FødselsDto): ResponseEntity<String> =
-        opprettFeed(type = Type.BA_Foedsel_v1, fnrBarn = fødselsDto.fnrBarn)
+    fun lagNyFødselsMelding(
+        @RequestBody fødselsDto: FødselsDto,
+    ): ResponseEntity<String> = opprettFeed(type = Type.BA_Foedsel_v1, fnrBarn = fødselsDto.fnrBarn)
 
     @PostMapping("/api/vedtakmelding")
-    fun lagNyHenvendelsesMelding(@RequestBody vedtakDto: VedtakDto): ResponseEntity<String> =
+    fun lagNyHenvendelsesMelding(
+        @RequestBody vedtakDto: VedtakDto,
+    ): ResponseEntity<String> =
 
         opprettFeed(
             type = Type.BA_Vedtak_v1,
             fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
-            datoStartNyBA = vedtakDto.datoStartNyBa
+            datoStartNyBA = vedtakDto.datoStartNyBa,
         )
 
     @PostMapping(
         "/api/startbehandlingsmelding",
         consumes = [MediaType.APPLICATION_JSON_VALUE],
-        produces = [MediaType.APPLICATION_JSON_VALUE]
+        produces = [MediaType.APPLICATION_JSON_VALUE],
     )
-    fun lagNyStartBehandlingsMelding(@RequestBody startBehandlingDto: StartBehandlingDto): ResponseEntity<String> =
-        opprettFeed(type = Type.BA_StartBeh, fnrStoenadsmottaker = startBehandlingDto.fnrStoenadsmottaker)
+    fun lagNyStartBehandlingsMelding(
+        @RequestBody startBehandlingDto: StartBehandlingDto,
+    ): ResponseEntity<String> = opprettFeed(type = Type.BA_StartBeh, fnrStoenadsmottaker = startBehandlingDto.fnrStoenadsmottaker)
 
     private fun opprettFeed(
         type: Type,
         fnrBarn: String? = null,
         fnrStoenadsmottaker: String? = null,
-        datoStartNyBA: LocalDate? = null
+        datoStartNyBA: LocalDate? = null,
     ): ResponseEntity<String> {
-        return Result.runCatching { infotrygdFeedService.opprettNyFeed(type = type, fnrBarn = fnrBarn, fnrStonadsmottaker = fnrStoenadsmottaker, datoStartNyBA = datoStartNyBA) }
+        return Result.runCatching {
+            infotrygdFeedService.opprettNyFeed(
+                type = type,
+                fnrBarn = fnrBarn,
+                fnrStonadsmottaker = fnrStoenadsmottaker,
+                datoStartNyBA = datoStartNyBA,
+            )
+        }
             .fold(onSuccess = {
                 ResponseEntity.ok("Hendelse opprettet")
             }, onFailure = {
-                    ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Klarte ikke opprette meldinger basert på hendelse")
-                })
+                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Klarte ikke opprette meldinger basert på hendelse")
+            })
     }
 }
