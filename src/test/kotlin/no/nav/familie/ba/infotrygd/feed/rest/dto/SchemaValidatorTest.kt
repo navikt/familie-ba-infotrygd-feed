@@ -104,8 +104,8 @@ class SchemaValidatorTest {
             val ID = "\$id"
             val myJsonMetaSchema = JsonMetaSchema.Builder(URI)
                 .idKeyword(ID)
-                .addKeywords(ValidatorTypeCode.getNonFormatKeywords(SpecVersion.VersionFlag.V4)) // keywords that may validly exist, but have no validation aspect to them
-                .addKeywords(
+                .keywords(ValidatorTypeCode.getKeywords(SpecVersion.VersionFlag.V4)) // keywords that may validly exist, but have no validation aspect to them
+                .keywords(
                     listOf(
                         NonValidationKeyword("\$schema"),
                         NonValidationKeyword("\$id"),
@@ -114,7 +114,7 @@ class SchemaValidatorTest {
                 )
                 .build()
 
-            return JsonSchemaFactory.Builder().defaultMetaSchemaURI(URI).addMetaSchema(myJsonMetaSchema).build()
+            return JsonSchemaFactory.builder(JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4)).defaultMetaSchemaIri(URI).metaSchema(myJsonMetaSchema).build()
                 .getSchema(schemaNode)
         }
 
