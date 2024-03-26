@@ -4,6 +4,7 @@ import no.nav.familie.ba.infotrygd.feed.rest.dto.FødselsDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.StartBehandlingDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import no.nav.familie.ba.infotrygd.feed.rest.dto.VedtakDto
+import no.nav.familie.ba.infotrygd.feed.rest.dto.erAlfanummerisk
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
 import no.nav.familie.kontrakter.felles.Ressurs
 import no.nav.security.token.support.core.api.ProtectedWithClaims
@@ -29,6 +30,9 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
     fun lagNyFødselsMelding(
         @RequestBody fødselsDto: FødselsDto,
     ): ResponseEntity<Ressurs<String>> {
+        if (!fødselsDto.fnrBarn.erAlfanummerisk()) {
+            error("fnrBarn er ikke alfanummerisk")
+        }
         return opprettFeed(type = Type.BA_Foedsel_v1, fnrBarn = fødselsDto.fnrBarn)
     }
 
@@ -40,6 +44,9 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
     fun lagNyVedtaksMelding(
         @RequestBody vedtakDto: VedtakDto,
     ): ResponseEntity<Ressurs<String>> {
+        if (!vedtakDto.fnrStoenadsmottaker.erAlfanummerisk()) {
+            error("fnrStoenadsmottaker er ikke alfanummerisk")
+        }
         return opprettFeed(
             type = Type.BA_Vedtak_v1,
             fnrStoenadsmottaker = vedtakDto.fnrStoenadsmottaker,
@@ -55,6 +62,9 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
     fun lagNyStartBehandlingsMelding(
         @RequestBody startBehandlingDto: StartBehandlingDto,
     ): ResponseEntity<Ressurs<String>> {
+        if (!startBehandlingDto.fnrStoenadsmottaker.erAlfanummerisk()) {
+            error("fnrStoenadsmottaker er ikke alfanummerisk")
+        }
         return opprettFeed(type = Type.BA_StartBeh, fnrStoenadsmottaker = startBehandlingDto.fnrStoenadsmottaker)
     }
 
