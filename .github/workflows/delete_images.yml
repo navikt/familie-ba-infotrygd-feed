@@ -15,9 +15,4 @@ jobs:
         with:
           package-name: 'familie-ba-infotrygd-feed'
           package-type: 'container'
-          num-old-versions-to-delete: 200
-      - uses: actions/delete-package-versions@v4
-        with:
-          package-name: 'familie-ba-infotrygd-feed/familie-ba-infotrygd-feed'
-          package-type: 'container'
-          num-old-versions-to-delete: 200
+          min-versions-to-keep: 3
