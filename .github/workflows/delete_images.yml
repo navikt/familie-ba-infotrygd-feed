@@ -2,7 +2,7 @@ name: 'Remove Old Images'
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 6 1 * *'
+    - cron: '14 50 * * *'
 
 jobs:
   remove-images:
@@ -11,7 +11,7 @@ jobs:
     permissions:
       packages: write
     steps:
-      - uses: actions/delete-package-versions@v4
+      - uses: actions/delete-package-versions@v5
         with:
           package-name: 'familie-ba-infotrygd-feed'
           package-type: 'container'
