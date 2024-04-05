@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Parameter
 import no.nav.familie.ba.infotrygd.feed.rest.dto.FeedMeldingDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.FeedOpprettetDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
+import no.nav.familie.ba.infotrygd.feed.rest.dto.erAlfanummerisk
 import no.nav.familie.ba.infotrygd.feed.rest.dto.konverterTilFeedMeldingDto
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
 import no.nav.familie.kontrakter.felles.Ressurs
@@ -82,8 +83,12 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
         @PathVariable type: Type,
         @RequestBody fnr: String,
     ): ResponseEntity<Ressurs<List<FeedOpprettetDto>>> {
+        if (!fnr.erAlfanummerisk()) {
+            error("fnrBarn er ikke alfanummerisk")
+        }
         return Result.runCatching {
-            infotrygdFeedService.hentMeldingerFraFeed(fnr, type).map { FeedOpprettetDto(it.opprettetDato, it.datoStartNyBa) }
+            infotrygdFeedService.hentMeldingerFraFeed(fnr, type)
+                .map { FeedOpprettetDto(it.opprettetDato, it.datoStartNyBa) }
         }.fold(
             onSuccess = {
                 secureLogger.info("Fant ${it.size} feeds av type ${type.name} opprettet for fnr $fnr", it)
