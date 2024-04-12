@@ -47,7 +47,6 @@ jobs:
       - name: Deploy til dev-fss
         uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-fss
           RESOURCE: app-preprod.yaml
           IMAGE: ${{ steps.docker-push.outputs.image }}
@@ -55,7 +54,6 @@ jobs:
       - name: Deploy til prod-fss
         uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-fss
           RESOURCE: app-prod.yaml
           IMAGE: ${{ steps.docker-push.outputs.image }}
