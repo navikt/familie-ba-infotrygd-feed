@@ -35,7 +35,6 @@ data class Feed(
     @Column(name = "opprettet_dato", nullable = true)
     var opprettetDato: LocalDateTime,
 ) {
-    override fun toString(): String {
-        return "Feed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat"
-    }
+    override fun toString(): String =
+        "Feed(sekvensId=$sekvensId, opprettetDato=$opprettetDato type=$type, datoStartNyBa=$datoStartNyBa, duplikat=$duplikat"
 }

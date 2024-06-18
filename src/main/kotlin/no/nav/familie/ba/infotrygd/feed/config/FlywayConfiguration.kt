@@ -15,9 +15,8 @@ class FlywayConfiguration {
     @Bean
     fun flywayConfig(
         @Value("\${spring.cloud.vault.database.role}") role: String,
-    ): FlywayConfigurationCustomizer {
-        return FlywayConfigurationCustomizer { c: FluentConfiguration ->
+    ): FlywayConfigurationCustomizer =
+        FlywayConfigurationCustomizer { c: FluentConfiguration ->
             c.initSql("SET ROLE \"$role\"")
         }
-    }
 }
