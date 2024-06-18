@@ -50,8 +50,8 @@ class SchemaValidatorTest {
         Assertions.assertEquals(1, feilListe.size)
     }
 
-    private fun testDtoForFødsel(fnr: String = "12345678910"): FeedMeldingDto {
-        return FeedMeldingDto(
+    private fun testDtoForFødsel(fnr: String = "12345678910"): FeedMeldingDto =
+        FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
@@ -64,10 +64,9 @@ class SchemaValidatorTest {
                     ),
                 ),
         )
-    }
 
-    private fun testDtoForVedtak(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto {
-        return FeedMeldingDto(
+    private fun testDtoForVedtak(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto =
+        FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
@@ -80,10 +79,9 @@ class SchemaValidatorTest {
                     ),
                 ),
         )
-    }
 
-    private fun testDtoForStartBehandling(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto {
-        return FeedMeldingDto(
+    private fun testDtoForStartBehandling(fnrStoenadsmottaker: String = "12345678910"): FeedMeldingDto =
+        FeedMeldingDto(
             tittel = "Feed schema validator test",
             inneholderFlereElementer = false,
             elementer =
@@ -96,7 +94,6 @@ class SchemaValidatorTest {
                     ),
                 ),
         )
-    }
 
     private val schema: JsonSchema
         get() {
@@ -105,7 +102,8 @@ class SchemaValidatorTest {
             val uri = "https://json-schema.org/draft-04/schema"
             val id = "\$id"
             val myJsonMetaSchema =
-                JsonMetaSchema.Builder(uri)
+                JsonMetaSchema
+                    .Builder(uri)
                     .idKeyword(id)
                     .keywords(ValidatorTypeCode.getKeywords(SpecVersion.VersionFlag.V4))
                     .keywords(
@@ -114,12 +112,14 @@ class SchemaValidatorTest {
                             NonValidationKeyword("\$id"),
                             NonValidationKeyword("examples"),
                         ),
-                    )
-                    .build()
+                    ).build()
 
-            return JsonSchemaFactory.builder(
-                JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4),
-            ).defaultMetaSchemaIri(uri).metaSchema(myJsonMetaSchema).build()
+            return JsonSchemaFactory
+                .builder(
+                    JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4),
+                ).defaultMetaSchemaIri(uri)
+                .metaSchema(myJsonMetaSchema)
+                .build()
                 .getSchema(schemaNode)
         }
 

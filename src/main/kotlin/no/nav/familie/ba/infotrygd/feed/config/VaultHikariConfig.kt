@@ -36,10 +36,9 @@ class VaultHikariConfig(
         container.addRequestedSecret(secret)
     }
 
-    override fun toString(): String {
-        return javaClass.simpleName + " [container=" +
+    override fun toString(): String =
+        javaClass.simpleName + " [container=" +
             container + ", hikariDataSource=" +
             hikariDataSource + ", props=" +
             props + "]"
-    }
 }

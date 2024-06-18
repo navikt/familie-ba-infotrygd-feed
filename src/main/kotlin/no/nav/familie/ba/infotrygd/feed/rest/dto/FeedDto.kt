@@ -7,10 +7,20 @@ const val ALFANUMERISKE_TEGN = "a-zæøåA-ZÆØÅ0-9"
 
 fun String.erAlfanummerisk(): Boolean = Regex("[$ALFANUMERISKE_TEGN]*").matches(this)
 
-data class FødselsDto(val fnrBarn: String)
+data class FødselsDto(
+    val fnrBarn: String,
+)
 
-data class VedtakDto(val datoStartNyBa: LocalDate, val fnrStoenadsmottaker: String)
+data class VedtakDto(
+    val datoStartNyBa: LocalDate,
+    val fnrStoenadsmottaker: String,
+)
 
-data class StartBehandlingDto(val fnrStoenadsmottaker: String)
+data class StartBehandlingDto(
+    val fnrStoenadsmottaker: String,
+)
 
-data class FeedOpprettetDto(val opprettetDato: LocalDateTime, val datoStartNyBa: LocalDate?)
+data class FeedOpprettetDto(
+    val opprettetDato: LocalDateTime,
+    val datoStartNyBa: LocalDate?,
+)

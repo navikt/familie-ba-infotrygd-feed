@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/barnetrygd")
 @ProtectedWithClaims(issuer = "sts")
-class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
+class InfotrygdFeedController(
+    private val infotrygdFeedService: InfotrygdFeedService,
+) {
     @Operation(
         summary = "Hent liste med hendelser.",
         description = "Henter hendelser med sekvensId større enn sistLesteSekvensId.",
@@ -36,20 +38,21 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
         @RequestParam("sistLesteSekvensId")
         sekvensnummer: Long,
     ): ResponseEntity<FeedMeldingDto> =
-        Result.runCatching {
-            konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
-        }.fold(
-            onSuccess = {
-                log.info("Hentet ${it.elementer.size} feeds fra sekvensnummer $sekvensnummer")
+        Result
+            .runCatching {
+                konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
+            }.fold(
+                onSuccess = {
+                    log.info("Hentet ${it.elementer.size} feeds fra sekvensnummer $sekvensnummer")
 
-                ResponseEntity.ok(it)
-            },
-            onFailure = {
-                log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
+                    ResponseEntity.ok(it)
+                },
+                onFailure = {
+                    log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
 
-                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-            },
-        )
+                    ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+                },
+            )
 
     @Operation(
         summary = "Hent liste med hendelser.",
@@ -62,20 +65,21 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
         @RequestParam("sistLesteSekvensId")
         sekvensnummer: Long,
     ): ResponseEntity<FeedMeldingDto> =
-        Result.runCatching {
-            konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
-        }.fold(
-            onSuccess = {
-                log.info("Hentet ${it.elementer.size} feeds fra sekvensnummer $sekvensnummer")
+        Result
+            .runCatching {
+                konverterTilFeedMeldingDto(infotrygdFeedService.hentMeldingerFraFeed(sistLestSekvensId = sekvensnummer))
+            }.fold(
+                onSuccess = {
+                    log.info("Hentet ${it.elementer.size} feeds fra sekvensnummer $sekvensnummer")
 
-                ResponseEntity.ok(it)
-            },
-            onFailure = {
-                log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
+                    ResponseEntity.ok(it)
+                },
+                onFailure = {
+                    log.error("Feil ved henting av feeds fra sekvensnummer $sekvensnummer", it)
 
-                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-            },
-        )
+                    ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+                },
+            )
 
     @PostMapping("/v1/feed/{type}/opprettet", produces = [MediaType.APPLICATION_JSON_VALUE])
     @ProtectedWithClaims(issuer = "azuread")
@@ -86,19 +90,21 @@ class InfotrygdFeedController(private val infotrygdFeedService: InfotrygdFeedSer
         if (!fnr.erAlfanummerisk()) {
             error("fnrBarn er ikke alfanummerisk")
         }
-        return Result.runCatching {
-            infotrygdFeedService.hentMeldingerFraFeed(fnr, type)
-                .map { FeedOpprettetDto(it.opprettetDato, it.datoStartNyBa) }
-        }.fold(
-            onSuccess = {
-                secureLogger.info("Fant ${it.size} feeds av type ${type.name} opprettet for fnr $fnr", it)
-                ResponseEntity.ok(Ressurs.success(it))
-            },
-            onFailure = {
-                secureLogger.error("Feil ved verifisering av ${type.name} feed for fnr $fnr", it)
-                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-            },
-        )
+        return Result
+            .runCatching {
+                infotrygdFeedService
+                    .hentMeldingerFraFeed(fnr, type)
+                    .map { FeedOpprettetDto(it.opprettetDato, it.datoStartNyBa) }
+            }.fold(
+                onSuccess = {
+                    secureLogger.info("Fant ${it.size} feeds av type ${type.name} opprettet for fnr $fnr", it)
+                    ResponseEntity.ok(Ressurs.success(it))
+                },
+                onFailure = {
+                    secureLogger.error("Feil ved verifisering av ${type.name} feed for fnr $fnr", it)
+                    ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+                },
+            )
     }
 
     companion object {

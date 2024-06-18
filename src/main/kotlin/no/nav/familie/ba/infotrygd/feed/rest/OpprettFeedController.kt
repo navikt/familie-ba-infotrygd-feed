@@ -21,7 +21,9 @@ import java.time.LocalDate
 @RestController()
 @RequestMapping("/api/barnetrygd")
 @ProtectedWithClaims(issuer = "azuread")
-class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedService) {
+class OpprettFeedController(
+    private val infotrygdFeedService: InfotrygdFeedService,
+) {
     @PostMapping(
         "/v1/feed/foedselsmelding",
         consumes = [MediaType.APPLICATION_JSON_VALUE],
@@ -73,25 +75,25 @@ class OpprettFeedController(private val infotrygdFeedService: InfotrygdFeedServi
         fnrBarn: String? = null,
         fnrStoenadsmottaker: String? = null,
         datoStartNyBA: LocalDate? = null,
-    ): ResponseEntity<Ressurs<String>> {
-        return Result.runCatching {
-            infotrygdFeedService.opprettNyFeed(
-                type = type,
-                fnrBarn = fnrBarn,
-                fnrStonadsmottaker = fnrStoenadsmottaker,
-                datoStartNyBA = datoStartNyBA,
-            )
-        }
-            .fold(onSuccess = {
+    ): ResponseEntity<Ressurs<String>> =
+        Result
+            .runCatching {
+                infotrygdFeedService.opprettNyFeed(
+                    type = type,
+                    fnrBarn = fnrBarn,
+                    fnrStonadsmottaker = fnrStoenadsmottaker,
+                    datoStartNyBA = datoStartNyBA,
+                )
+            }.fold(onSuccess = {
                 ResponseEntity.status(HttpStatus.CREATED).body(Ressurs.success(data = "Create"))
             }, onFailure = {
                 secureLogger.error("Feil ved oppretting av feed $fnrBarn, $fnrStoenadsmottaker.", it)
                 log.error("Feil ved oppretting av feed", it)
 
-                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Ressurs.failure("Klarte ikke opprette meldinger."))
             })
-    }
 
     companion object {
         private val log = LoggerFactory.getLogger(this::class.java)

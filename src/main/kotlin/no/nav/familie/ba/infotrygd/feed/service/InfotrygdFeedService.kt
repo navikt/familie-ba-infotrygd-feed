@@ -9,7 +9,9 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Service
-class InfotrygdFeedService(val feedRepository: FeedRepository) {
+class InfotrygdFeedService(
+    val feedRepository: FeedRepository,
+) {
     fun opprettNyFeed(
         type: Type,
         fnrBarn: String? = null,
@@ -17,7 +19,8 @@ class InfotrygdFeedService(val feedRepository: FeedRepository) {
         datoStartNyBA: LocalDate? = null,
     ) {
         val erDuplikat =
-            type.takeIf { it == Type.BA_Foedsel_v1 }
+            type
+                .takeIf { it == Type.BA_Foedsel_v1 }
                 ?.let { feedRepository.erDuplikatFoedselsmelding(type, fnrBarn!!) }
                 ?: false
 
@@ -41,7 +44,5 @@ class InfotrygdFeedService(val feedRepository: FeedRepository) {
     fun hentMeldingerFraFeed(
         fnr: String,
         type: Type,
-    ): List<Feed> {
-        return feedRepository.finnMeldingerForFnr(fnr).filter { it.type == type }
-    }
+    ): List<Feed> = feedRepository.finnMeldingerForFnr(fnr).filter { it.type == type }
 }
