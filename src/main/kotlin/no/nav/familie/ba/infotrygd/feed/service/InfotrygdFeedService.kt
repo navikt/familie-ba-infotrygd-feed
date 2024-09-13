@@ -45,4 +45,8 @@ class InfotrygdFeedService(
         fnr: String,
         type: Type,
     ): List<Feed> = feedRepository.finnMeldingerForFnr(fnr).filter { it.type == type }
+
+    fun foo() {
+        println("foo")
+    }
 }
