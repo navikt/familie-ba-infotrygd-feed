@@ -23,7 +23,7 @@
         <felles-kontrakter.version>3.0_20241125092101_ae3c67e</felles-kontrakter.version>
         <felles.version>3.20241121151626_836e7ca</felles.version>
         <springdoc.version>2.7.0</springdoc.version>
-        <token-validation-spring.version>5.0.11</token-validation-spring.version>
+        <token-validation-spring.version>5.0.13</token-validation-spring.version>
         <spring.vault.version>3.1.2</spring.vault.version>
         <spring.cloud.version>4.2.0</spring.cloud.version>
     </properties>
