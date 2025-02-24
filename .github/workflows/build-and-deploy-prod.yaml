@@ -47,12 +47,12 @@ jobs:
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-fss
-          RESOURCE: app-dev.yaml
+          RESOURCE: .nais/app-dev.yaml
           IMAGE: ${{ steps.docker-push.outputs.image }}
 
       - name: Deploy til prod-fss
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: prod-fss
-          RESOURCE: app-prod.yaml
+          RESOURCE: .nais/app-prod.yaml
           IMAGE: ${{ steps.docker-push.outputs.image }}
