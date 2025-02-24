@@ -77,5 +77,5 @@ jobs:
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-fss
-          RESOURCE: app-preprod.yaml
+          RESOURCE: app-dev.yaml
           IMAGE: ${{ steps.docker-push.outputs.image }}
