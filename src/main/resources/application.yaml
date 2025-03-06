@@ -32,3 +32,5 @@ management:
     exposure.include: info, health, metrics, prometheus
     base-path: "/internal"
   metrics.export.prometheus.enabled: true
+
+GYLDIG_SERVICE_BRUKER: srvfamilie-ks-opps,srvInfot
