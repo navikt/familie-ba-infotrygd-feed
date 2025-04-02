@@ -19,7 +19,7 @@ jobs:
     if: inputs.image != ''
     permissions:
       id-token: write
-    uses: navikt/familie-baks-gha-workflows/.github/workflows/deploy-with-tag.yaml@main
+    uses: navikt/familie-baks-gha-workflows/.github/workflows/deploy-with-tag.yaml@24d2d7fb85fda95733b59f973f397f23d2e15389 # ratchet:navikt/familie-baks-gha-workflows/.github/workflows/deploy-with-tag.yaml@main
     with:
       image-tag: ${{ inputs.image }}
       cluster: ${{ inputs.environment }}-fss

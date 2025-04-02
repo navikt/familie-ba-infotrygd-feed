@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    uses: navikt/familie-baks-gha-workflows/.github/workflows/build-maven-app.yaml@main
+    uses: navikt/familie-baks-gha-workflows/.github/workflows/build-maven-app.yaml@24d2d7fb85fda95733b59f973f397f23d2e15389 # ratchet:navikt/familie-baks-gha-workflows/.github/workflows/build-maven-app.yaml@main
     with:
       skip-tests: ${{ inputs.skip-tests }}
       build-image: true
@@ -25,8 +25,8 @@ jobs:
     name: Deploy with new image
     permissions:
       id-token: write
-    needs: [ build ]
-    uses: navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@main
+    needs: [build]
+    uses: navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@24d2d7fb85fda95733b59f973f397f23d2e15389 # ratchet:navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@main
     with:
       image: ${{ needs.build.outputs.image }}
       cluster: prod-fss
