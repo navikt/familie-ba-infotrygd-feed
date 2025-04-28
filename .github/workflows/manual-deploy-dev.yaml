@@ -19,6 +19,7 @@ jobs:
       skip-tests: ${{ inputs.skip-tests }}
       build-image: true
       push-image: true
+      byosbom: target/classes/META-INF/sbom/application.cdx.json
     secrets: inherit
   deploy-with-new-image:
     name: Deploy with new image
