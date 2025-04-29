@@ -8,7 +8,7 @@ on:
     paths-ignore:
       - '**.md'
       - '**.MD'
-      - '.github/*.yaml'
+      - '.github/**.yaml'
       - '.gitignore'
       - 'CODEOWNERS'
       - 'LICENSE'
@@ -24,17 +24,18 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    uses: navikt/familie-baks-gha-workflows/.github/workflows/build-maven-app.yaml@24d2d7fb85fda95733b59f973f397f23d2e15389 # ratchet:navikt/familie-baks-gha-workflows/.github/workflows/build-maven-app.yaml@main
+    uses: navikt/familie-baks-gha-workflows/.github/workflows/build-maven-app.yaml@54c5d9228a37ca88ea58074a00eaa9cf9e90e7ec # ratchet:navikt/familie-baks-gha-workflows/.github/workflows/build-maven-app.yaml@main
     with:
       build-image: true
       push-image: true
+      byosbom: target/classes/META-INF/sbom/application.cdx.json
     secrets: inherit
   deploy-dev:
     name: Deploy dev
     permissions:
       id-token: write
     needs: [build]
-    uses: navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@24d2d7fb85fda95733b59f973f397f23d2e15389 # ratchet:navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@main
+    uses: navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@54c5d9228a37ca88ea58074a00eaa9cf9e90e7ec # ratchet:navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@main
     with:
       image: ${{ needs.build.outputs.image }}
       cluster: dev-fss
@@ -45,7 +46,7 @@ jobs:
     permissions:
       id-token: write
     needs: [build, deploy-dev]
-    uses: navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@24d2d7fb85fda95733b59f973f397f23d2e15389 # ratchet:navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@main
+    uses: navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@54c5d9228a37ca88ea58074a00eaa9cf9e90e7ec # ratchet:navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@main
     with:
       image: ${{ needs.build.outputs.image }}
       cluster: prod-fss
