@@ -1,0 +1,18 @@
+name: Automerge Dependabot PRs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Automerge Dependabot PRs
+        uses: navikt/automerge-dependabot@main
+        with:
+          token: ${{ github.token }}
+          minimum-age-of-pr: '2'
+          merge-method: 'squash'
+          always-allow: no.nav.familie.kontrakter,no.nav.familie.felles
