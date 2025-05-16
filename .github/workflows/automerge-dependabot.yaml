@@ -13,6 +13,5 @@ jobs:
         uses: navikt/automerge-dependabot@main
         with:
           token: ${{ github.token }}
-          minimum-age-of-pr: '0'
-          merge-method: 'squash'
+          minimum-age-of-pr: '2'
           always-allow: no.nav.familie.kontrakter,no.nav.familie.felles
