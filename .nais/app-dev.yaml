@@ -56,6 +56,10 @@ spec:
         - application: ida
           namespace: traktor
           cluster: prod-fss
+    outbound:
+      rules:
+        - application: logging
+          namespace: nais-system
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: preprod
