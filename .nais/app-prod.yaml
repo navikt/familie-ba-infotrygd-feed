@@ -52,6 +52,10 @@ spec:
           cluster: prod-gcp
         - application: familie-ba-migrering
           cluster: prod-gcp
+    outbound:
+      rules:
+        - application: logging
+          namespace: nais-system
   env:
     - name: SPRING_PROFILES_ACTIVE
       value: prod
