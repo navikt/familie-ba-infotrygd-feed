@@ -32,7 +32,6 @@ class OpprettFeedController(
     fun lagNyFødselsMelding(
         @RequestBody fødselsDto: FødselsDto,
     ): ResponseEntity<Ressurs<String>> {
-        secureLogger.info("Lager ny fødselsmelding for fnrBarn: ${fødselsDto.fnrBarn}")
         if (!fødselsDto.fnrBarn.erAlfanummerisk()) {
             error("fnrBarn er ikke alfanummerisk")
         }
