@@ -16,3 +16,4 @@ jobs:
           minimum-age-of-pr: '0'
           merge-method: 'squash'
           always-allow: no.nav.familie.kontrakter,no.nav.familie.felles
+          auto-approve: 'true'
