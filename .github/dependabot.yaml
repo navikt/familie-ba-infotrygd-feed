@@ -10,6 +10,10 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+    cooldown:
+      default-days: 4
+      exclude:
+        - "no.nav.familie*"
     open-pull-requests-limit: 10
     registries:
       - github
@@ -17,4 +21,8 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+    cooldown:
+      default-days: 4
+      exclude:
+        - "no.nav.familie*"
     open-pull-requests-limit: 10
