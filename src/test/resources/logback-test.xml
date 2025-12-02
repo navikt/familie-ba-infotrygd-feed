@@ -8,4 +8,5 @@
 
 
     <logger name="no.nav" level="INFO"/>
+    <logger name="org.flywaydb.core.FlywayExecutor" level="WARN"/>
 </configuration>
