@@ -21,7 +21,7 @@ class ApplicationConfig {
     fun logFilter(): FilterRegistrationBean<LogFilter> {
         log.info("Registering LogFilter filter")
         val filterRegistration: FilterRegistrationBean<LogFilter> = FilterRegistrationBean()
-        filterRegistration.filter = LogFilter(NavSystemtype.NAV_INTEGRASJON)
+        filterRegistration.setFilter(LogFilter(NavSystemtype.NAV_INTEGRASJON))
         filterRegistration.order = 1
         return filterRegistration
     }
