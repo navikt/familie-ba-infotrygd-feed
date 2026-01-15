@@ -22,7 +22,7 @@
         <kotlin.version>2.3.0</kotlin.version>
         <felles-kontrakter.version>3.0_20251208150204_158920b</felles-kontrakter.version>
         <felles.version>4.20251203153147_ca40cc5</felles.version>
-        <springdoc.version>3.0.0</springdoc.version>
+        <springdoc.version>3.0.1</springdoc.version>
         <token-validation-spring.version>6.0.0</token-validation-spring.version>
         <spring.vault.version>4.0.0</spring.vault.version>
         <spring.cloud.version>5.0.0</spring.cloud.version>
