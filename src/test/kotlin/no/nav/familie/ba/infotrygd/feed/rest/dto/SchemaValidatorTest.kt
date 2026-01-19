@@ -1,12 +1,9 @@
 package no.nav.familie.ba.infotrygd.feed.rest.dto
 
 import com.fasterxml.jackson.databind.JsonNode
-import com.networknt.schema.JsonMetaSchema
-import com.networknt.schema.JsonSchema
-import com.networknt.schema.JsonSchemaFactory
-import com.networknt.schema.NonValidationKeyword
-import com.networknt.schema.SpecVersion
-import com.networknt.schema.ValidatorTypeCode
+import com.networknt.schema.Schema
+import com.networknt.schema.SchemaRegistry
+import com.networknt.schema.SpecificationVersion
 import no.nav.familie.kontrakter.felles.objectMapper
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -95,32 +92,11 @@ class SchemaValidatorTest {
                 ),
         )
 
-    private val schema: JsonSchema
+    private val schema: Schema
         get() {
             val schemaNode = objectMapper.readTree(hentFeedSchema())
-
-            val uri = "https://json-schema.org/draft-04/schema"
-            val id = "\$id"
-            val myJsonMetaSchema =
-                JsonMetaSchema
-                    .Builder(uri)
-                    .idKeyword(id)
-                    .keywords(ValidatorTypeCode.getKeywords(SpecVersion.VersionFlag.V4))
-                    .keywords(
-                        listOf(
-                            NonValidationKeyword("\$schema"),
-                            NonValidationKeyword("\$id"),
-                            NonValidationKeyword("examples"),
-                        ),
-                    ).build()
-
-            return JsonSchemaFactory
-                .builder(
-                    JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4),
-                ).defaultMetaSchemaIri(uri)
-                .metaSchema(myJsonMetaSchema)
-                .build()
-                .getSchema(schemaNode)
+            val schemaRegistry = SchemaRegistry.withDefaultDialect(SpecificationVersion.DRAFT_4)
+            return schemaRegistry.getSchema(schemaNode)
         }
 
     private fun hentFeedSchema(): String {
