@@ -37,8 +37,6 @@ spec:
     requests:
       memory: 512Mi
       cpu: 200m
-  secureLogs:
-    enabled: true
   ingresses:
     - https://familie-ba-infotrygd-feed.nais.adeo.no
     - https://familie-ba-infotrygd-feed.prod-fss-pub.nais.io
