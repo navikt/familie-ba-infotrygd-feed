@@ -176,7 +176,7 @@
             <groupId>com.networknt</groupId>
             <artifactId>json-schema-validator</artifactId>
             <scope>test</scope>
-            <version>2.0.1</version>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
