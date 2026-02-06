@@ -41,11 +41,14 @@ spec:
     - https://familie-ba-infotrygd-feed.nais.preprod.local
     - https://familie-ba-infotrygd-feed.intern.dev.nav.no
     - https://familie-ba-infotrygd-feed.dev-fss-pub.nais.io
-  secureLogs:
-    enabled: true
   azure:
     application:
       enabled: true
+  observability:
+    logging:
+      destinations:
+        - id: elastic
+        - id: loki
   accessPolicy:
     inbound:
       rules:
