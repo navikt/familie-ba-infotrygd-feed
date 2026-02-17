@@ -26,5 +26,6 @@
     <logger name="no.nav" level="INFO"/>
     <logger name="no.nav.familie" level="INFO"/>
     <logger name="org.flywaydb.core.FlywayExecutor" level="WARN"/>
+    <logger name="org.hibernate.orm.connections.pooling" level="WARN"/>
 
 </configuration>
