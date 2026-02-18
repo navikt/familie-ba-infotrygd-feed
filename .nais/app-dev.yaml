@@ -59,6 +59,9 @@ spec:
         - application: ida
           namespace: traktor
           cluster: prod-fss
+        - application: azure-token-generator
+          namespace: nais
+          cluster: dev-gcp
     outbound:
       rules:
         - application: logging
