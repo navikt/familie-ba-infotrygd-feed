@@ -24,7 +24,7 @@
         <felles.version>4.20251203153147_ca40cc5</felles.version>
         <springdoc.version>3.0.1</springdoc.version>
         <token-validation-spring.version>6.0.2</token-validation-spring.version>
-        <spring.vault.version>4.0.0</spring.vault.version>
+        <spring.vault.version>4.0.1</spring.vault.version>
         <spring.cloud.version>5.0.1</spring.cloud.version>
     </properties>
 
