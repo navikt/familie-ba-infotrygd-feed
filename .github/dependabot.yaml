@@ -17,6 +17,38 @@ updates:
     open-pull-requests-limit: 10
     registries:
       - github
+    groups:
+      interne-avhengigheter:
+        patterns:
+          - "no.nav.familie:*"
+          - "no.nav.familie.kontrakter:*"
+          - "no.nav.familie.felles:*"
+          - "no.nav.familie.eksterne.kontrakter:*"
+      spring-med-avhengigheter:
+        patterns:
+          - "org.springframework*"
+          - "no.nav.security*"
+          - "org.springdoc*"
+      utvikler-avhengigheter:
+        dependency-type: development
+        exclude-patterns:
+          - "org.springframework*"
+          - "org.springdoc*"
+          - "no.nav.security*"
+          - "no.nav.familie:*"
+          - "no.nav.familie.kontrakter:*"
+          - "no.nav.familie.felles:*"
+          - "no.nav.familie.eksterne.kontrakter:*"
+      prod-avhengigheter:
+        dependency-type: production
+        exclude-patterns:
+          - "org.springframework*"
+          - "org.springdoc*"
+          - "no.nav.security*"
+          - "no.nav.familie:*"
+          - "no.nav.familie.kontrakter:*"
+          - "no.nav.familie.felles:*"
+          - "no.nav.familie.eksterne.kontrakter:*"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
