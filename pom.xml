@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.2</version>
+        <version>4.0.3</version>
     </parent>
 
     <properties>
@@ -23,8 +23,8 @@
         <felles-kontrakter.version>4.0_20260114164342_c2a77a4</felles-kontrakter.version>
         <felles.version>4.20251203153147_ca40cc5</felles.version>
         <springdoc.version>3.0.1</springdoc.version>
-        <token-validation-spring.version>6.0.2</token-validation-spring.version>
-        <spring.vault.version>4.0.0</spring.vault.version>
+        <token-validation-spring.version>6.0.3</token-validation-spring.version>
+        <spring.vault.version>4.0.1</spring.vault.version>
         <spring.cloud.version>5.0.1</spring.cloud.version>
     </properties>
 
