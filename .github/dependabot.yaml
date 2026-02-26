@@ -58,3 +58,7 @@ updates:
       exclude:
         - "no.nav.familie*"
     open-pull-requests-limit: 10
+    groups:
+      workflows:
+        patterns:
+          - "*"
