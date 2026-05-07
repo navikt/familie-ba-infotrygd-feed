@@ -9,7 +9,6 @@ import no.nav.familie.ba.infotrygd.feed.rest.dto.erAlfanummerisk
 import no.nav.familie.ba.infotrygd.feed.rest.dto.konverterTilFeedMeldingDto
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
 import no.nav.familie.kontrakter.felles.Ressurs
-import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/barnetrygd")
-@ProtectedWithClaims(issuer = "sts")
 class InfotrygdFeedController(
     private val infotrygdFeedService: InfotrygdFeedService,
 ) {
@@ -59,7 +57,6 @@ class InfotrygdFeedController(
         description = "Henter hendelser med sekvensId større enn sistLesteSekvensId.",
     )
     @GetMapping("/v1/feedazure", produces = ["application/json; charset=us-ascii"])
-    @ProtectedWithClaims(issuer = "azuread")
     fun feedAzure(
         @Parameter(description = "Sist leste sekvensnummer.", required = true, example = "0")
         @RequestParam("sistLesteSekvensId")
@@ -82,7 +79,6 @@ class InfotrygdFeedController(
             )
 
     @PostMapping("/v1/feed/{type}/opprettet", produces = [MediaType.APPLICATION_JSON_VALUE])
-    @ProtectedWithClaims(issuer = "azuread")
     fun feedOpprettet(
         @PathVariable type: Type,
         @RequestBody fnr: String,

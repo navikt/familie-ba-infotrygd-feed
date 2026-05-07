@@ -1,6 +1,9 @@
 STS_ISSUER:  http://localhost:${mock-oauth2-server.port}/selvbetjening/.well-known/openid-configuration
 GYLDIG_SERVICE_BRUKER: aud-localhost
 
+AZURE_OPENID_CONFIG_ISSUER: https://login.microsoftonline.com/navq.onmicrosoft.com/v2.0/.well-known/openid-configuration
+AZURE_APP_CLIENT_ID: aud-localhost
+
 spring:
   jpa:
     show-sql: false
