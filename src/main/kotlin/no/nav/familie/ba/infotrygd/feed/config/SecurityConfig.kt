@@ -32,6 +32,12 @@ class SecurityConfig(
                 "/api/barnetrygd/v1/feedazure",
                 "/api/barnetrygd/v1/feedazure",
                 "/api/barnetrygd/v1/feed/*/opprettet",
+<<<<<<< Updated upstream
+=======
+                "/api/barnetrygd/v1/feed/foedselsmelding",
+                "/api/barnetrygd/v1/feed/vedtaksmelding",
+                "/api/barnetrygd/v1/feed/startbehandlingsmelding",
+>>>>>>> Stashed changes
             )
 
             authorizeHttpRequests {
