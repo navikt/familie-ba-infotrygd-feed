@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.test.web.servlet.client.RestTestClient
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("dev")
@@ -22,12 +22,12 @@ class SecurityIntegrationTest {
     @Autowired
     private lateinit var mockOAuth2Server: MockOAuth2Server
 
-    private lateinit var webTestClient: WebTestClient
+    private lateinit var restTestClient: RestTestClient
 
     @BeforeEach
     fun setup() {
-        webTestClient =
-            WebTestClient
+        restTestClient =
+            RestTestClient
                 .bindToServer()
                 .baseUrl("http://localhost:$port")
                 .build()
@@ -37,7 +37,7 @@ class SecurityIntegrationTest {
     inner class OffentligeEndepunkter {
         @Test
         fun `skal tillate tilgang til health uten token`() {
-            webTestClient
+            restTestClient
                 .get()
                 .uri("/internal/health")
                 .exchange()
@@ -47,7 +47,7 @@ class SecurityIntegrationTest {
 
         @Test
         fun `skal tillate tilgang til swagger uten token`() {
-            webTestClient
+            restTestClient
                 .get()
                 .uri("/swagger-ui/index.html")
                 .exchange()
@@ -60,7 +60,7 @@ class SecurityIntegrationTest {
     inner class StsEndepunkter {
         @Test
         fun `skal avvise feed uten token`() {
-            webTestClient
+            restTestClient
                 .get()
                 .uri("/api/barnetrygd/v1/feed?sistLesteSekvensId=0")
                 .exchange()
@@ -73,7 +73,7 @@ class SecurityIntegrationTest {
             val token = JwtTokenTestUtil.lagStsToken(mockOAuth2Server)
 
             val status =
-                webTestClient
+                restTestClient
                     .get()
                     .uri("/api/barnetrygd/v1/feed?sistLesteSekvensId=0")
                     .header("Authorization", "Bearer $token")
@@ -88,7 +88,7 @@ class SecurityIntegrationTest {
         fun `skal avvise Azure AD-token på STS endpoint`() {
             val token = JwtTokenTestUtil.lagAzureAdToken(mockOAuth2Server)
 
-            webTestClient
+            restTestClient
                 .get()
                 .uri("/api/barnetrygd/v1/feed?sistLesteSekvensId=0")
                 .header("Authorization", "Bearer $token")
@@ -104,7 +104,7 @@ class SecurityIntegrationTest {
         fun `skal avvise STS-token på Azure AD endpoint`() {
             val token = JwtTokenTestUtil.lagStsToken(mockOAuth2Server)
 
-            webTestClient
+            restTestClient
                 .get()
                 .uri("/api/barnetrygd/v1/feedazure?sistLesteSekvensId=0")
                 .header("Authorization", "Bearer $token")
@@ -118,15 +118,13 @@ class SecurityIntegrationTest {
             val token = JwtTokenTestUtil.lagAzureAdToken(mockOAuth2Server)
 
             val status =
-                webTestClient
+                restTestClient
                     .get()
                     .uri("/api/barnetrygd/v1/feedazure?sistLesteSekvensId=0")
                     .header("Authorization", "Bearer $token")
                     .exchange()
-                    .returnResult()
-                    .status
-
-            assertFalse(status.is4xxClientError, "status var $status, forventet ikke 4xx")
+                    .expectStatus()
+                    .isOk
         }
 
         @Test
@@ -134,16 +132,14 @@ class SecurityIntegrationTest {
             val token = JwtTokenTestUtil.lagAzureAdToken(mockOAuth2Server)
 
             val status =
-                webTestClient
+                restTestClient
                     .post()
                     .uri("/api/barnetrygd/v1/feed/BA_Foedsel_v1/opprettet")
                     .header("Authorization", "Bearer $token")
-                    .bodyValue("12345678901")
+                    .body("12345678901")
                     .exchange()
-                    .returnResult()
-                    .status
-
-            assertFalse(status.is4xxClientError, "status var $status, forventet ikke 4xx")
+                    .expectStatus()
+                    .isOk
         }
 
         @Test
