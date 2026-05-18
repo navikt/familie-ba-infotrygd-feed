@@ -23,7 +23,7 @@
         <felles-kontrakter.version>4.0_20260420090252_0eaf8ff</felles-kontrakter.version>
         <felles.version>4.20260428145828_c16a1d8</felles.version>
         <springdoc.version>3.0.3</springdoc.version>
-        <token-validation-spring.version>6.0.6</token-validation-spring.version>
+        <mock-oauth2-server.version>3.0.1</mock-oauth2-server.version>
         <spring.vault.version>4.0.2</spring.vault.version>
         <spring.cloud.version>5.0.1</spring.cloud.version>
     </properties>
@@ -158,20 +158,21 @@
             <artifactId>sikkerhet</artifactId>
             <version>${felles.version}</version>
         </dependency>
+
+        <!-- Spring Security OAuth2 -->
         <dependency>
             <groupId>no.nav.familie.felles</groupId>
-            <artifactId>sikkerhet-token-support</artifactId>
+            <artifactId>sikkerhet-spring-security</artifactId>
             <version>${felles.version}</version>
         </dependency>
         <dependency>
-            <groupId>no.nav.security</groupId>
-            <artifactId>token-validation-spring</artifactId>
-            <version>${token-validation-spring.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>no.nav.security</groupId>
-            <artifactId>token-validation-spring-test</artifactId>
-            <version>${token-validation-spring.version}</version>
+            <artifactId>mock-oauth2-server</artifactId>
+            <version>${mock-oauth2-server.version}</version>
             <scope>test</scope>
         </dependency>
 
