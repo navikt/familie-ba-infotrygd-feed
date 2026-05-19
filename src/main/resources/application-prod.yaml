@@ -1,4 +1,11 @@
-STS_ISSUER:  https://security-token-service.nais.adeo.no/rest/v1/sts/.well-known/openid-configuration
+no.nav.security.jwt:
+  issuer.sts:
+    discoveryurl: https://security-token-service.nais.adeo.no/rest/v1/sts/.well-known/openid-configuration
+    accepted_audience: ${GYLDIG_SERVICE_BRUKER}
+  issuer.azuread:
+    discoveryurl: https://login.microsoftonline.com/navno.onmicrosoft.com/v2.0/.well-known/openid-configuration
+    accepted_audience: ${AZURE_APP_CLIENT_ID}
+    proxyurl: http://webproxy-nais.nav.no:8088
 
 spring:
   datasource:
