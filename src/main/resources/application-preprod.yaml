@@ -1,4 +1,4 @@
-STS_ISSUER:  https://security-token-service.dev.adeo.no
+STS_ISSUER:  https://security-token-service.nais.preprod.local
 
 spring:
   datasource:
