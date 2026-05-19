@@ -2,18 +2,23 @@ package no.nav.familie.ba.infotrygd.feed.config
 
 import no.nav.familie.log.NavSystemtype
 import no.nav.familie.log.filter.LogFilter
+import no.nav.familie.sikkerhet.context.FamilieFellesNavTokenSupportKonfigurasjon
+import no.nav.security.token.support.spring.api.EnableJwtTokenValidation
 import org.slf4j.LoggerFactory
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.Import
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @SpringBootConfiguration
 @ConfigurationPropertiesScan
 @EnableJpaRepositories(ApplicationConfig.PAKKENAVN)
+@EnableJwtTokenValidation(ignore = ["org.springframework", "org.springdoc"])
 @ComponentScan(ApplicationConfig.PAKKENAVN)
+@Import(FamilieFellesNavTokenSupportKonfigurasjon::class)
 class ApplicationConfig {
     @Bean
     fun logFilter(): FilterRegistrationBean<LogFilter> {
