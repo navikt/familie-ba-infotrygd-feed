@@ -22,7 +22,7 @@ class StsDecoder(
         require(!stsIssuer.isNullOrBlank()) { "STS_ISSUER må være satt" }
         require(!gyldigServiceBruker.isNullOrBlank()) { "GYLDIG_SERVICE_BRUKER må være satt" }
 
-        val decoder = NimbusJwtDecoder.withJwkSetUri(stsIssuer).build()
+        val decoder = NimbusJwtDecoder.withIssuerLocation(stsIssuer).build()
         decoder.setJwtValidator(
             DelegatingOAuth2TokenValidator(
                 JwtValidators.createDefaultWithIssuer(stsIssuer),

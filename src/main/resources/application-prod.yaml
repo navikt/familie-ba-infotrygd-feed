@@ -1,4 +1,4 @@
-STS_ISSUER:  https://security-token-service.nais.adeo.no/jwks
+STS_ISSUER:  https://security-token-service.nais.adeo.no
 
 spring:
   datasource:
