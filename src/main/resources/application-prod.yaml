@@ -1,4 +1,4 @@
-STS_ISSUER:  https://security-token-service.nais.adeo.no/rest/v1/sts/.well-known/openid-configuration
+STS_ISSUER:  https://security-token-service.nais.adeo.no
 
 spring:
   datasource:
