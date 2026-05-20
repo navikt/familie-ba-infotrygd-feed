@@ -23,7 +23,7 @@ class MockOAuth2ServerInitializer : ApplicationContextInitializer<ConfigurableAp
         val properties =
             mapOf<String, Any>(
                 "STS_ISSUER" to server.issuerUrl("sts").toString(),
-                "GYLDIG_SERVICE_BRUKER" to "aud-localhost",
+                "GYLDIG_SERVICE_BRUKER" to "aud1,aud2,aud3",
                 "AZURE_OPENID_CONFIG_ISSUER" to server.issuerUrl("azuread").toString(),
                 "AZURE_APP_CLIENT_ID" to "aud-localhost",
             )

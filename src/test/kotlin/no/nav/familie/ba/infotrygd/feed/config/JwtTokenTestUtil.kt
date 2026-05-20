@@ -6,8 +6,9 @@ object JwtTokenTestUtil {
     fun lagStsToken(
         mockOAuth2Server: MockOAuth2Server,
         subject: String = "srvfamilie-ba-infotrygd-feed",
-        audience: String = "aud-localhost",
-        tilleggsClaims: Map<String, Any> = emptyMap(),
+        audience: String? = null,
+        tilleggsClaims: Map<String, Any> = mapOf("aud" to listOf("aud1",
+            "aud-localhost"),),
     ): String =
         mockOAuth2Server
             .issueToken(
