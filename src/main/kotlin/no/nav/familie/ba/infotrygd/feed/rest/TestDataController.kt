@@ -5,7 +5,6 @@ import no.nav.familie.ba.infotrygd.feed.rest.dto.StartBehandlingDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.Type
 import no.nav.familie.ba.infotrygd.feed.rest.dto.VedtakDto
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
-import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.springframework.context.annotation.Profile
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -17,7 +16,6 @@ import java.time.LocalDate
 
 @RestController
 @Profile("!prod")
-@ProtectedWithClaims(issuer = "sts")
 class TestDataController(
     val infotrygdFeedService: InfotrygdFeedService,
 ) {

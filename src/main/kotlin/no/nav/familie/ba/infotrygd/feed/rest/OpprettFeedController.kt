@@ -7,7 +7,6 @@ import no.nav.familie.ba.infotrygd.feed.rest.dto.VedtakDto
 import no.nav.familie.ba.infotrygd.feed.rest.dto.erAlfanummerisk
 import no.nav.familie.ba.infotrygd.feed.service.InfotrygdFeedService
 import no.nav.familie.kontrakter.felles.Ressurs
-import no.nav.security.token.support.core.api.ProtectedWithClaims
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -20,7 +19,6 @@ import java.time.LocalDate
 
 @RestController()
 @RequestMapping("/api/barnetrygd")
-@ProtectedWithClaims(issuer = "azuread")
 class OpprettFeedController(
     private val infotrygdFeedService: InfotrygdFeedService,
 ) {
