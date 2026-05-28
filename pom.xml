@@ -20,7 +20,7 @@
         <changelist>-SNAPSHOT</changelist>
         <java.version>25</java.version>
         <kotlin.version>2.3.21</kotlin.version>
-        <felles-kontrakter.version>4.0_20260505124916_025d466</felles-kontrakter.version>
+        <felles-kontrakter.version>4.0_20260527090809_893fcba</felles-kontrakter.version>
         <felles.version>4.20260520144147_4729200</felles.version>
         <springdoc.version>3.0.3</springdoc.version>
         <mock-oauth2-server.version>3.0.1</mock-oauth2-server.version>
