@@ -23,8 +23,8 @@
         <felles-kontrakter.version>4.0_20260601160326_f2fb0e9</felles-kontrakter.version>
         <felles.version>4.20260529121328_2754f7c</felles.version>
         <springdoc.version>3.0.3</springdoc.version>
-        <mock-oauth2-server.version>3.0.1</mock-oauth2-server.version>
-        <spring.vault.version>4.0.2</spring.vault.version>
+        <mock-oauth2-server.version>4.0.0</mock-oauth2-server.version>
+        <spring.vault.version>4.1.0</spring.vault.version>
         <spring.cloud.version>5.0.1</spring.cloud.version>
     </properties>
 
