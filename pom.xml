@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.6</version>
+        <version>4.1.0</version>
     </parent>
 
     <properties>
@@ -23,9 +23,9 @@
         <felles-kontrakter.version>4.0_20260622103258_a3e0997</felles-kontrakter.version>
         <felles.version>4.20260622095330_affbfcf</felles.version>
         <springdoc.version>3.0.3</springdoc.version>
-        <mock-oauth2-server.version>3.0.1</mock-oauth2-server.version>
-        <spring.vault.version>4.0.2</spring.vault.version>
-        <spring.cloud.version>5.0.1</spring.cloud.version>
+        <mock-oauth2-server.version>5.0.2</mock-oauth2-server.version>
+        <spring.vault.version>4.1.0</spring.vault.version>
+        <spring.cloud.version>5.0.2</spring.cloud.version>
     </properties>
 
     <dependencies>
