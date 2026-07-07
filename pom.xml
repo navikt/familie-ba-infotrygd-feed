@@ -20,8 +20,8 @@
         <changelist>-SNAPSHOT</changelist>
         <java.version>25</java.version>
         <kotlin.version>2.3.21</kotlin.version>
-        <felles-kontrakter.version>4.0_20260601160326_f2fb0e9</felles-kontrakter.version>
-        <felles.version>4.20260529121328_2754f7c</felles.version>
+        <felles-kontrakter.version>4.0_20260622103258_a3e0997</felles-kontrakter.version>
+        <felles.version>4.20260622095330_affbfcf</felles.version>
         <springdoc.version>3.0.3</springdoc.version>
         <mock-oauth2-server.version>3.0.1</mock-oauth2-server.version>
         <spring.vault.version>4.0.2</spring.vault.version>
@@ -181,7 +181,7 @@
             <groupId>com.networknt</groupId>
             <artifactId>json-schema-validator</artifactId>
             <scope>test</scope>
-            <version>3.0.2</version>
+            <version>3.0.3</version>
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
