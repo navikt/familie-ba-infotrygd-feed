@@ -48,7 +48,7 @@ class StsDecoder(
                 .toSet()
 
         return OAuth2TokenValidator { jwt ->
-            val tokenAudiences = jwt.audience.toSet()
+            val tokenAudiences = jwt.audience?.toSet() ?: emptySet()
             val hasMatch = tokenAudiences.any { it in allowedAudiences }
 
             if (hasMatch) {
@@ -65,5 +65,5 @@ class StsDecoder(
         }
     }
 
-    override fun decode(token: String?): Jwt? = delegate.decode(token)
+    override fun decode(token: String): Jwt = delegate.decode(token)
 }
