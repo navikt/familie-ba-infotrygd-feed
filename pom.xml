@@ -22,7 +22,7 @@
         <kotlin.version>2.4.10</kotlin.version>
         <felles-kontrakter.version>4.0_20260702124405_ce34af2</felles-kontrakter.version>
         <felles.version>4.20260702124222_2415d74</felles.version>
-        <springdoc.version>3.0.3</springdoc.version>
+        <springdoc.version>3.1.0</springdoc.version>
         <mock-oauth2-server.version>5.0.2</mock-oauth2-server.version>
         <spring.vault.version>4.1.0</spring.vault.version>
         <spring.cloud.version>5.0.2</spring.cloud.version>
