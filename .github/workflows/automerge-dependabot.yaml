@@ -10,7 +10,7 @@ jobs:
       contents: write
     steps:
       - name: Automerge Dependabot PRs
-        uses: navikt/automerge-dependabot@45dfdb1da89fadc891ac1c3c454e26f465914f31 # ratchet:navikt/automerge-dependabot@main
+        uses: navikt/automerge-dependabot@f3d979a9d48cdf487a832cc156fa4993747c1dc3 # ratchet:navikt/automerge-dependabot@main
         with:
           token: ${{ github.token }}
           minimum-age-of-pr: '0'
