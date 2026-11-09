@@ -27,9 +27,13 @@ spring:
     enabled: true
 
 management:
+  endpoint.info.access: none
   endpoint.health.show-details: always
+  info:
+    defaults:
+      enabled: false
   endpoints.web:
-    exposure.include: info, health, metrics, prometheus
+    exposure.include: health, metrics, prometheus
     base-path: "/internal"
   metrics.export.prometheus.enabled: true
 
