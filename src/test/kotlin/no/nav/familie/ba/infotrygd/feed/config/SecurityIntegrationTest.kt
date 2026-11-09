@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
@@ -35,14 +37,36 @@ class SecurityIntegrationTest {
 
     @Nested
     inner class OffentligeEndepunkter {
-        @Test
-        fun `skal tillate tilgang til health uten token`() {
+        @ParameterizedTest
+        @ValueSource(
+            strings = ["/internal", "/internal/health", "/internal/metrics", "/internal/metrics/jvm.memory.used", "/internal/prometheus"],
+        )
+        fun `skal tillate offentlige internal-endepunkter uten token`(path: String) {
             restTestClient
                 .get()
-                .uri("/internal/health")
+                .uri(path)
                 .exchange()
                 .expectStatus()
                 .isOk
+        }
+
+        @ParameterizedTest
+        @ValueSource(
+            strings = [
+                "/internal/info",
+                "/internal/mappings",
+                "/internal/status/isAlive",
+                "/internal/healthcheck",
+                "/internal/prometheus/other",
+            ],
+        )
+        fun `skal avvise øvrige internal-endepunkter uten token`(path: String) {
+            restTestClient
+                .get()
+                .uri(path)
+                .exchange()
+                .expectStatus()
+                .isUnauthorized
         }
 
         @Test
